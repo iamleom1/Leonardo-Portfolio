@@ -20,6 +20,47 @@ const headshot = `${assetBase}headshot.jpg`;
 const resumeHref = `${assetBase}Leonardo_Medina_Resume.pdf`;
 const linkedInHref = "https://www.linkedin.com/in/leonardo-medina-391817287";
 
+const financeVisuals = [
+  {
+    src: `${assetBase}finance-visuals/finance-page-15.png`,
+    title: "Current-state context diagram",
+    caption: "Current F&I workflow and disconnected handoffs."
+  },
+  {
+    src: `${assetBase}finance-visuals/finance-page-18.png`,
+    title: "Proposed integrated system",
+    caption: "Single integrated F&I flow replacing manual portal transitions."
+  },
+  {
+    src: `${assetBase}finance-visuals/finance-page-19.png`,
+    title: "Level 0 DFD",
+    caption: "Revamped processes and the added document repository store."
+  },
+  {
+    src: `${assetBase}finance-visuals/finance-page-20.png`,
+    title: "Level 1 DFD + ERD",
+    caption: "Detailed 2.0 process flow plus the proposed data model."
+  }
+] as const;
+
+const r4v3Visuals = [
+  {
+    src: `${assetBase}r4v3-visuals/events-browse.png`,
+    title: "Browse Local Events",
+    caption: "Users browse curated local events and signal intent by selecting ones they plan to attend."
+  },
+  {
+    src: `${assetBase}r4v3-visuals/crew-toggle.png`,
+    title: "Crew Toggle (Core Feature)",
+    caption: "Matching is activated at the event level—users opt into 'Looking for Crew' to become visible to others attending."
+  },
+  {
+    src: `${assetBase}r4v3-visuals/event-detail.png`,
+    title: "Event Detail (Depth)",
+    caption: "Event pages centralize RSVP, visibility controls, and real-time context for coordination and connection."
+  }
+] as const;
+
 const projects = [
   {
     id: "spot",
@@ -73,13 +114,14 @@ const projects = [
       "Kept the scope centered on the finance process instead of broader dealership systems."
     ],
     outcome:
-      "The project produced process diagrams and data models showing how finance information could move more consistently across steps."
+      "The project produced process diagrams and data models showing how finance information could move more consistently across steps.",
+    visualSet: "finance"
   },
   {
     id: "events",
     category: "Applied Project Work",
     role: "Product Design & Development (Digital) Project",
-    title: "Event-Based Social Discovery Platform",
+    title: "Event-First Social Matching — R4V3",
     subtitle: "Product concept for live-event user connection",
     blurb:
       "Designed a product concept focused on connecting users attending the same live events, defining core features such as event matching, user profiles, and real-time interaction.",
@@ -363,6 +405,26 @@ export default function App() {
                       </div>
                     </div>
                     <p className="mt-5 max-w-xl text-sm leading-7 text-black/63 dark:text-white/63">{project.blurb}</p>
+                    {project.id === "finance" ? (
+                      <div className="mt-5 overflow-hidden rounded-[1.4rem] border border-sky-500/20 bg-gradient-to-br from-sky-100 via-white to-slate-100 dark:from-sky-500/10 dark:via-white/5 dark:to-slate-500/10">
+                        <div className="border-b border-sky-500/15 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-700 dark:text-sky-300">
+                          Systems diagrams
+                        </div>
+                        <img src={financeVisuals[0].src} alt={financeVisuals[0].title} className="h-52 w-full object-cover object-top" />
+                      </div>
+                    ) : project.id === "events" ? (
+                      <div className="mt-5 overflow-hidden rounded-[1.4rem] border border-orange-500/20 bg-gradient-to-br from-[#1b120d] via-[#11100d] to-[#0f172a]">
+                        <div className="flex items-center justify-between border-b border-orange-400/15 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-orange-300">
+                          <span>Product screens</span>
+                          <span className="text-white/45">3 views</span>
+                        </div>
+                        <div className="p-4">
+                          <div className="mx-auto max-w-[240px] overflow-hidden rounded-[1.5rem] border border-white/10 bg-black shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
+                            <img src={r4v3Visuals[0].src} alt={r4v3Visuals[0].title} className="w-full object-cover object-top" />
+                          </div>
+                        </div>
+                      </div>
+                    ) : null}
                     <div className="mt-5 flex flex-wrap gap-2">
                       {project.metrics.map((item) => (
                         <span key={item} className="rounded-full border border-black/8 bg-white/85 px-3 py-1.5 text-xs text-black/70 dark:border-white/10 dark:bg-white/5 dark:text-white/70">
@@ -433,13 +495,13 @@ export default function App() {
                     <a href="mailto:Medina.Leonardo41@gmail.com" className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-500 px-5 py-3 text-sm font-medium text-white">
                       <Mail className="h-4 w-4" /> Email
                     </a>
-                    <a href="tel:9095450907" className="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 px-5 py-3 text-sm font-medium dark:border-white/10">
+                    <a href="tel:9095450907" className="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 px-5 py-3 text-sm font-medium text-[#0f172a] dark:border-white/10 dark:text-white">
                       <Phone className="h-4 w-4" /> Call
                     </a>
-                    <a href={linkedInHref} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 px-5 py-3 text-sm font-medium dark:border-white/10">
+                    <a href={linkedInHref} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 px-5 py-3 text-sm font-medium text-[#0f172a] dark:border-white/10 dark:text-white">
                       <Linkedin className="h-4 w-4" /> LinkedIn
                     </a>
-                    <a href={resumeHref} className="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 px-5 py-3 text-sm font-medium dark:border-white/10">
+                    <a href={resumeHref} className="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 px-5 py-3 text-sm font-medium text-[#0f172a] dark:border-white/10 dark:text-white">
                       <Download className="h-4 w-4" /> Resume
                     </a>
                   </div>
@@ -472,10 +534,63 @@ export default function App() {
                     <h3 className="mt-3 text-3xl font-semibold tracking-tight">{activeProject.title}</h3>
                     <div className="mt-2 text-sm text-black/55 dark:text-white/55">{activeProject.role} · {activeProject.subtitle}</div>
                   </div>
-                  <button onClick={() => setActiveId(null)} className="rounded-full border border-black/10 p-2 dark:border-white/10" aria-label="Close modal">
+                  <button onClick={() => setActiveId(null)} className="rounded-full border border-black/10 p-2 text-[#0f172a] dark:border-white/10 dark:text-white" aria-label="Close modal">
                     <X className="h-4 w-4" />
                   </button>
                 </div>
+
+                {activeProject.id === "finance" ? (
+                  <div className="mt-8 rounded-[1.75rem] border border-sky-500/20 bg-gradient-to-br from-sky-50 via-white to-slate-50 p-4 shadow-[0_18px_50px_rgba(14,116,144,0.08)] dark:from-sky-500/10 dark:via-[#07111e] dark:to-slate-500/10 dark:shadow-none">
+                    <div className="flex items-center justify-between gap-4 border-b border-sky-500/15 px-2 pb-4">
+                      <div>
+                        <div className="text-xs uppercase tracking-[0.2em] text-sky-700 dark:text-sky-300">Visual appendix</div>
+                        <div className="mt-1 text-lg font-semibold text-[#0f172a] dark:text-white">Direct PDF diagrams from the automotive systems project</div>
+                      </div>
+                      <div className="text-xs text-[#334155] dark:text-white/60">Pages 15, 18, 19, 20</div>
+                    </div>
+                    <div className="mt-5 grid gap-4 lg:grid-cols-2">
+                      {financeVisuals.map((visual) => (
+                        <figure key={visual.src} className="overflow-hidden rounded-[1.25rem] border border-sky-500/15 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.06)] dark:border-white/10 dark:bg-[#08101c] dark:shadow-none">
+                          <img src={visual.src} alt={visual.title} className="w-full object-cover object-top" />
+                          <figcaption className="border-t border-black/5 px-4 py-3 dark:border-white/10">
+                            <div className="text-sm font-semibold text-[#0f172a] dark:text-white">{visual.title}</div>
+                            <div className="mt-1 text-xs leading-6 text-[#475569] dark:text-white/60">{visual.caption}</div>
+                          </figcaption>
+                        </figure>
+                      ))}
+                    </div>
+                  </div>
+                ) : activeProject.id === "events" ? (
+                  <div className="mt-8 rounded-[1.9rem] border border-orange-500/20 bg-[radial-gradient(circle_at_top,rgba(251,146,60,0.14),transparent_45%),linear-gradient(135deg,#130e0a,#0b1020)] p-5 shadow-[0_24px_70px_rgba(15,23,42,0.24)] dark:shadow-[0_24px_70px_rgba(0,0,0,0.35)]">
+                    <div className="flex items-center justify-between gap-4 border-b border-white/10 px-1 pb-4">
+                      <div>
+                        <div className="text-xs uppercase tracking-[0.2em] text-orange-300">Product walkthrough</div>
+                        <div className="mt-1 text-lg font-semibold text-white">Three screens that explain the R4V3 event-first matching flow</div>
+                      </div>
+                      <div className="text-xs text-white/55">Browse, opt-in, coordinate</div>
+                    </div>
+                    <div className="mt-5 grid gap-4 lg:grid-cols-[1.12fr_0.88fr]">
+                      <figure className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c0c0f] shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
+                        <img src={r4v3Visuals[0].src} alt={r4v3Visuals[0].title} className="w-full object-cover object-top" />
+                        <figcaption className="border-t border-white/10 px-4 py-4">
+                          <div className="text-sm font-semibold text-white">{r4v3Visuals[0].title}</div>
+                          <div className="mt-1 text-sm leading-6 text-white/65">{r4v3Visuals[0].caption}</div>
+                        </figcaption>
+                      </figure>
+                      <div className="grid gap-4">
+                        {r4v3Visuals.slice(1).map((visual) => (
+                          <figure key={visual.src} className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c0c0f] shadow-[0_18px_40px_rgba(0,0,0,0.28)]">
+                            <img src={visual.src} alt={visual.title} className="w-full object-cover object-top" />
+                            <figcaption className="border-t border-white/10 px-4 py-4">
+                              <div className="text-sm font-semibold text-white">{visual.title}</div>
+                              <div className="mt-1 text-sm leading-6 text-white/65">{visual.caption}</div>
+                            </figcaption>
+                          </figure>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : null}
 
                 <div className="mt-8 grid gap-6 sm:grid-cols-3">
                   {activeProject.metrics.map((metric) => (
