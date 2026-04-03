@@ -134,7 +134,7 @@ const projects = [
     title: "Event-First Social Matching — R4V3",
     subtitle: "Product concept for live-event user connection",
     blurb:
-      "Designed and built an event-first system where users RSVP to events, opt into visibility through 'Looking for Crew,' and connect only within shared event context.",
+      "Built and tested a working MVP with event-based matching and real-time chat.",
     metrics: [],
     accent: "from-blue-500/20 to-cyan-400/10",
     problem:
@@ -417,7 +417,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="mt-10 grid gap-5 lg:grid-cols-2">
+            <div className="mt-10 grid gap-5 lg:grid-cols-2 lg:auto-rows-fr">
               {projects.map((project, index) => (
                 <motion.button
                   key={project.id}
@@ -426,10 +426,10 @@ export default function App() {
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.45, delay: index * 0.04 }}
                   onClick={() => openProject(project.id)}
-                  className="group relative overflow-hidden rounded-[1.75rem] border border-black/6 bg-white/75 p-6 text-left shadow-[0_12px_40px_rgba(15,23,42,0.05)] transition hover:-translate-y-1 hover:border-blue-500/20 dark:border-white/10 dark:bg-white/5 dark:shadow-none"
+                  className="group relative flex h-full overflow-hidden rounded-[1.75rem] border border-black/6 bg-white/75 p-6 text-left shadow-[0_12px_40px_rgba(15,23,42,0.05)] transition hover:-translate-y-1 hover:border-blue-500/20 dark:border-white/10 dark:bg-white/5 dark:shadow-none"
                 >
                   <div className={`absolute inset-0 bg-gradient-to-br ${project.accent} opacity-0 transition duration-300 group-hover:opacity-100`} />
-                  <div className="relative">
+                  <div className="relative flex min-h-[560px] w-full flex-col">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <div className="text-xs uppercase tracking-[0.18em] text-black/45 dark:text-white/45">{project.category}</div>
@@ -441,27 +441,46 @@ export default function App() {
                       </div>
                     </div>
                     <p className="mt-5 max-w-xl text-sm leading-7 text-black/63 dark:text-white/63">{project.blurb}</p>
-                    {project.id === "finance" ? (
-                      <div className="mt-5 overflow-hidden rounded-[1.4rem] border border-sky-500/20 bg-gradient-to-br from-sky-100 via-white to-slate-100 dark:from-sky-500/10 dark:via-white/5 dark:to-slate-500/10">
-                        <div className="border-b border-sky-500/15 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-700 dark:text-sky-300">
-                          Systems diagrams
+                    <div className="mt-5 flex-1">
+                      {project.id === "finance" ? (
+                        <div className="h-full overflow-hidden rounded-[1.4rem] border border-sky-500/20 bg-gradient-to-br from-sky-100 via-white to-slate-100 dark:from-sky-500/10 dark:via-white/5 dark:to-slate-500/10">
+                          <div className="border-b border-sky-500/15 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-700 dark:text-sky-300">
+                            Systems diagrams
+                          </div>
+                          <img src={financeVisuals[0].src} alt={financeVisuals[0].title} className="h-[230px] w-full object-cover object-top" />
                         </div>
-                        <img src={financeVisuals[0].src} alt={financeVisuals[0].title} className="h-52 w-full object-cover object-top" />
-                      </div>
-                    ) : project.id === "events" ? (
-                      <div className="mt-5 overflow-hidden rounded-[1.4rem] border border-orange-500/20 bg-gradient-to-br from-[#1b120d] via-[#11100d] to-[#0f172a]">
-                        <div className="flex items-center justify-between border-b border-orange-400/15 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-orange-300">
-                          <span>Product screens</span>
-                          <span className="text-white/45">3 views</span>
-                        </div>
-                        <div className="p-4">
-                          <div className="mx-auto max-w-[240px] overflow-hidden rounded-[1.5rem] border border-white/10 bg-black shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
-                            <img src={r4v3Visuals[0].src} alt={r4v3Visuals[0].title} className="w-full object-cover object-top" />
+                      ) : project.id === "events" ? (
+                        <div className="h-full overflow-hidden rounded-[1.4rem] border border-orange-500/20 bg-gradient-to-br from-[#1b120d] via-[#11100d] to-[#0f172a]">
+                          <div className="flex items-center justify-between border-b border-orange-400/15 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-orange-300">
+                            <span>Product screens</span>
+                            <span className="text-white/45">3 views</span>
+                          </div>
+                          <div className="flex h-[230px] items-center justify-center p-4">
+                            <div className="mx-auto max-w-[240px] overflow-hidden rounded-[1.5rem] border border-white/10 bg-black shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
+                              <img src={r4v3Visuals[0].src} alt={r4v3Visuals[0].title} className="w-full object-cover object-top" />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ) : null}
-                    {project.metrics.length ? (
+                      ) : (
+                        <div className="flex h-full min-h-[280px] flex-col justify-between rounded-[1.4rem] border border-black/8 bg-gradient-to-br from-white via-slate-50 to-slate-100 p-5 dark:border-white/10 dark:from-white/5 dark:via-white/5 dark:to-slate-500/10">
+                          <div>
+                            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/45 dark:text-white/45">Project snapshot</div>
+                            <div className="mt-4 text-lg font-semibold text-[#0f172a] dark:text-white">MVP concept backed by prototype work and early validation.</div>
+                            <p className="mt-3 text-sm leading-7 text-black/60 dark:text-white/60">
+                              Product concept, 3D modeling, and early UI testing brought into one focused build story.
+                            </p>
+                          </div>
+                          <div className="mt-6 grid grid-cols-3 gap-2">
+                            {project.metrics.map((item) => (
+                              <div key={item} className="rounded-2xl border border-black/8 bg-white/85 px-3 py-3 text-center text-xs text-black/70 dark:border-white/10 dark:bg-white/5 dark:text-white/70">
+                                {item}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    {project.metrics.length && project.id !== "spot" ? (
                       <div className="mt-5 flex flex-wrap gap-2">
                         {project.metrics.map((item) => (
                           <span key={item} className="rounded-full border border-black/8 bg-white/85 px-3 py-1.5 text-xs text-black/70 dark:border-white/10 dark:bg-white/5 dark:text-white/70">
@@ -477,29 +496,33 @@ export default function App() {
           </section>
 
           <section id="experience" className="mx-auto max-w-7xl px-6 py-12 lg:px-8 lg:py-20">
-            <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-              <div>
-                <SectionLabel>Experience</SectionLabel>
-                <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">Work experience from the resume.</h2>
+            <div className="max-w-3xl">
+              <SectionLabel>Experience</SectionLabel>
+              <div className="mt-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+                <h2 className="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">Work experience from the resume.</h2>
+                <p className="max-w-xl text-sm leading-7 text-black/60 dark:text-white/60">
+                  Frontline sales, operations, logistics, and customer-facing work that shaped how I approach execution, process, and user needs.
+                </p>
               </div>
-              <div className="space-y-5">
-                {experience.map((item) => (
-                  <div key={`${item.company}-${item.role}`} className="rounded-[1.5rem] border border-black/6 bg-white/70 p-6 dark:border-white/10 dark:bg-white/5">
-                    <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                      <div>
-                        <div className="flex items-center gap-2 text-sm text-blue-500 dark:text-blue-300"><Briefcase className="h-4 w-4" /> {item.role}</div>
-                        <h3 className="mt-2 text-xl font-semibold">{item.company}</h3>
-                      </div>
-                      <div className="text-sm text-black/50 dark:text-white/50">{item.period}</div>
+            </div>
+
+            <div className="mt-10 grid gap-5 xl:grid-cols-2">
+              {experience.map((item) => (
+                <div key={`${item.company}-${item.role}`} className="rounded-[1.5rem] border border-black/6 bg-white/70 p-6 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                      <div className="flex items-center gap-2 text-sm text-blue-500 dark:text-blue-300"><Briefcase className="h-4 w-4" /> {item.role}</div>
+                      <h3 className="mt-2 text-xl font-semibold">{item.company}</h3>
                     </div>
-                    <ul className="mt-5 space-y-3 text-sm leading-7 text-black/65 dark:text-white/65">
-                      {item.points.map((point) => (
-                        <li key={point} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{point}</span></li>
-                      ))}
-                    </ul>
+                    <div className="text-sm text-black/50 dark:text-white/50">{item.period}</div>
                   </div>
-                ))}
-              </div>
+                  <ul className="mt-5 space-y-3 text-sm leading-7 text-black/65 dark:text-white/65">
+                    {item.points.map((point) => (
+                      <li key={point} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{point}</span></li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </section>
 
