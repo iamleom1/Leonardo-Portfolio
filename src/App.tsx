@@ -408,7 +408,7 @@ export default function App() {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <SectionLabel>Selected Work</SectionLabel>
-                <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">Projects aligned to the resume.</h2>
+                <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">Product Case Studies.</h2>
               </div>
               <p className="max-w-xl text-sm leading-7 text-black/60 dark:text-white/60">
                 These entries use the same project titles, scope, and supporting details reflected on the resume.
