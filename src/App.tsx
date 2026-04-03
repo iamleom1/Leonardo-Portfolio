@@ -171,10 +171,10 @@ const experience = [
     role: "Sales Executive",
     company: "STG Auto Group",
     points: [
-      "Worked directly with customers across the full purchase journey, identifying how decision-making, pricing, and financing impact conversion.",
-      "Structured deals and negotiated outcomes by balancing customer needs with business constraints.",
-      "Managed CRM workflows to ensure timely follow-up, accurate data capture, and consistent pipeline movement.",
-      "Observed where delays and drop-offs occur in the sales process, informing how systems and processes could be improved."
+      "Analyzed customer behavior across the full purchase journey to identify friction points in pricing, financing, and decision-making.",
+      "Balanced customer needs with business constraints by structuring deals, developing a strong understanding of tradeoffs and value optimization.",
+      "Managed CRM workflows to improve data accuracy, follow-up timing, and pipeline visibility, ensuring more consistent deal progression.",
+      "Identified patterns in drop-offs and delays, informing opportunities to improve sales processes and customer experience."
     ]
   },
   {
@@ -182,9 +182,10 @@ const experience = [
     role: "Warehouse Team Supervisor",
     company: "United Parcel Services",
     points: [
-      "Managed high-volume operations with a team of 15+, ensuring workflow efficiency under time constraints.",
-      "Identified bottlenecks in package flow and adjusted staffing or processes to maintain throughput.",
-      "Balanced speed, accuracy, and coordination across teams in a time-sensitive environment."
+      "Led high-volume warehouse operations, analyzing workflow performance to identify bottlenecks impacting throughput and delivery timelines.",
+      "Diagnosed inefficiencies in package flow and adjusted staffing allocation and process steps to maintain operational continuity under time constraints.",
+      "Balanced speed, accuracy, and labor resources by making real-time tradeoff decisions in a dynamic, high-pressure environment.",
+      "Coordinated across teams to ensure alignment on priorities, improving consistency in execution and reducing operational friction."
     ]
   },
   {
@@ -201,8 +202,8 @@ const experience = [
     role: "Retail Sales Associate",
     company: "The Home Depot",
     points: [
-      "Assisted customers in navigating product decisions based on project needs and constraints.",
-      "Used POS and inventory systems to locate products and manage availability."
+      "Guided customers through product selection by identifying their needs, constraints, and intended use cases, improving decision clarity.",
+      "Observed patterns in customer questions and challenges, informing how product information and in-store guidance could be improved."
     ]
   }
 ] as const;
