@@ -68,7 +68,7 @@ const projects = [
     category: "Applied Project Work",
     role: "Product Design & Development (Digital) Project",
     title: "Event-First Social Matching — R4V3",
-    subtitle: "Product concept for live-event user connection",
+    subtitle: "Built a working MVP for event-based social matching with RSVP-driven visibility and real-time chat.",
     blurb:
       "Built and tested a working MVP with event-based matching and real-time chat.",
     metrics: [],
@@ -104,10 +104,10 @@ const projects = [
     category: "Applied Project Work",
     role: "Systems Analysis Project",
     title: "Integrated Automotive Finance System",
-    subtitle: "Process review and data flow centralization concept",
+    subtitle: "Redesigned a fragmented F&I workflow into a centralized, API-driven system.",
     blurb:
       "Analyzed the end-to-end F&I workflow and designed a centralized system that reduces repeated entry, manual handoffs, and disconnected deal processing.",
-    metrics: ["Process review", "Handoffs documented", "Data models created"],
+    metrics: ["Workflow analysis", "System redesign", "Data architecture"],
     accent: "from-blue-600/20 to-slate-400/10",
     problem:
       "Customer and deal information in the F&I process is spread across multiple systems, requiring repeated data entry and manual handoffs between CRM, lenders, DMV, and insurance providers. This creates delays, errors, and slows down deal completion and funding.",
@@ -171,10 +171,10 @@ const experience = [
     role: "Sales Executive",
     company: "STG Auto Group",
     points: [
-      "Continuously performed as a senior sales rep, handling the entire sales cycle from initial customer contact to negotiation, financing, and delivery.",
-      "Recognized as a high-performing sales rep based on deal volume and customer follow-through.",
-      "Handled deal structuring and negotiation write-ups, working directly with desk managers to reach agreements that meet customer needs and dealership profit.",
-      "Managed and maintained the team’s CRM activity, ensuring that leads were properly followed up on, customer notes were complete, and opportunities were not lost due to poor communication."
+      "Worked directly with customers across the full purchase journey, identifying how decision-making, pricing, and financing impact conversion.",
+      "Structured deals and negotiated outcomes by balancing customer needs with business constraints.",
+      "Managed CRM workflows to ensure timely follow-up, accurate data capture, and consistent pipeline movement.",
+      "Observed where delays and drop-offs occur in the sales process, informing how systems and processes could be improved."
     ]
   },
   {
@@ -182,10 +182,9 @@ const experience = [
     role: "Warehouse Team Supervisor",
     company: "United Parcel Services",
     points: [
-      "Supervised daily warehouse operations with a team of 15+ employees processing high package volumes under strict time and safety requirements.",
-      "Managed shift operations by assigning work, monitoring flow, and stepping in to resolve issues that could impact service.",
-      "Trained employees on workplace procedures, safety standards, and workflow expectations to maintain consistency across shifts.",
-      "Used basic operational reports and floor observations to identify issues or slowdowns and adjusted staffing or processes as needed."
+      "Managed high-volume operations with a team of 15+, ensuring workflow efficiency under time constraints.",
+      "Identified bottlenecks in package flow and adjusted staffing or processes to maintain throughput.",
+      "Balanced speed, accuracy, and coordination across teams in a time-sensitive environment."
     ]
   },
   {
@@ -193,9 +192,8 @@ const experience = [
     role: "Creative Content Specialist",
     company: "Montclair Auto Exchange",
     points: [
-      "Created and updated vehicle listings and digital content using Adobe tools to keep online inventory accurate, current, and visually consistent.",
-      "Maintained and organized shared marketing assets so content could be reused easily across listings and promotions.",
-      "Supported promotional efforts by updating content around incoming inventory, pricing changes, and seasonal campaigns."
+      "Created and managed digital vehicle listings, ensuring consistency across platforms and improving content quality.",
+      "Supported marketing workflows by organizing reusable assets and updating listings based on inventory and pricing changes."
     ]
   },
   {
@@ -203,8 +201,8 @@ const experience = [
     role: "Retail Sales Associate",
     company: "The Home Depot",
     points: [
-      "Assisted customers on the sales floor by understanding their needs and helping them select appropriate products for home improvement projects.",
-      "Used POS and inventory systems to check product availability, locate items, and flag low stock on frequently requested products."
+      "Assisted customers in navigating product decisions based on project needs and constraints.",
+      "Used POS and inventory systems to locate products and manage availability."
     ]
   }
 ] as const;
@@ -225,9 +223,9 @@ const education = [
 ] as const;
 
 const skills = {
-  "Product & Strategy": ["MVP Design", "Systems Analysis", "CRM optimization", "KPI tracking", "Marketing Strategy", "Analytic & Insights"],
-  "Technical & Analytics": ["Python", "R", "SQL", "Excel", "Tableau", "Data Analytics", "Data Visualization", "Data Modeling", "Simulation Modeling"],
-  Leadership: ["Team leadership & coaching", "Cross-functional collaboration", "stakeholder communication", "customer research", "training & development", "Agile Development"]
+  "Product Thinking": ["MVP Design", "Systems Analysis", "CRM Optimization", "KPI Tracking", "User Flows", "Workflow Design"],
+  "Data & Technical Skills": ["Python", "SQL", "Excel", "Tableau", "Data Analytics", "Data Visualization", "Data Modeling", "Simulation Modeling", "Funnel Analysis"],
+  "Execution & Leadership": ["Team Leadership", "Cross-functional Collaboration", "Stakeholder Communication", "Process Optimization", "Operational Execution"]
 } as const;
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -315,7 +313,7 @@ export default function App() {
                 transition={{ duration: 0.6 }}
                 className="mt-6 text-5xl font-semibold leading-[1.02] tracking-tight text-balance sm:text-6xl lg:text-7xl"
               >
-                Experience across sales operations, analytics, and cross-functional projects.
+                Turning real customer behavior and data into product decisions.
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
@@ -323,7 +321,7 @@ export default function App() {
                 transition={{ duration: 0.7, delay: 0.08 }}
                 className="mt-6 max-w-2xl text-lg leading-8 text-black/65 dark:text-white/68"
               >
-                Interested in roles where data and customer insight inform better business decisions.
+                Experience in high-volume sales and CRM workflows, focused on building products that improve how users discover, decide, and act.
               </motion.p>
 
               <motion.div
@@ -350,8 +348,8 @@ export default function App() {
 
               <div className="mt-12 grid gap-4 sm:grid-cols-3">
                 {[
-                  ["Sales operations", "Experience across customer contact, negotiation, financing, and delivery."],
-                  ["Analytics", "Interested in work where data helps inform better business decisions."],
+                  ["Customer Behavior", "Experience across customer contact, negotiation, financing, and delivery."],
+                  ["Data & Decision Making", "Interested in work where data helps inform better business decisions."],
                   ["Cross-functional projects", "Background across product development, systems analysis, and team collaboration."]
                 ].map(([title, copy]) => (
                   <div key={title} className="rounded-3xl border border-black/6 bg-white/65 p-5 shadow-[0_10px_30px_rgba(15,23,42,0.04)] backdrop-blur dark:border-white/10 dark:bg-white/5 dark:shadow-none">
@@ -409,7 +407,7 @@ export default function App() {
           <section id="projects" className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-20">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <SectionLabel>Applied Project Work</SectionLabel>
+                <SectionLabel>Selected Work</SectionLabel>
                 <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">Projects aligned to the resume.</h2>
               </div>
               <p className="max-w-xl text-sm leading-7 text-black/60 dark:text-white/60">
@@ -499,7 +497,7 @@ export default function App() {
             <div className="max-w-3xl">
               <SectionLabel>Experience</SectionLabel>
               <div className="mt-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-                <h2 className="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">Work experience from the resume.</h2>
+                <h2 className="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">Experience & Product Foundations</h2>
                 <p className="max-w-xl text-sm leading-7 text-black/60 dark:text-white/60">
                   Frontline sales, operations, logistics, and customer-facing work that shaped how I approach execution, process, and user needs.
                 </p>
@@ -547,23 +545,23 @@ export default function App() {
                 <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
                   <div>
                     <SectionLabel>Contact</SectionLabel>
-                    <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">Contact information aligned to the resume.</h2>
+                    <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">Let's connect</h2>
                     <p className="mt-4 max-w-2xl text-base leading-8 text-black/65 dark:text-white/65">
-                      Leonardo Medina. Medina.Leonardo41@gmail.com. (909) 545-0907. LinkedIn available below.
+                      Open to product, PMM, and technical PM opportunities. Reach out via email or LinkedIn.
                     </p>
                   </div>
                   <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-                    <a href="mailto:Medina.Leonardo41@gmail.com" className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-500 px-5 py-3 text-sm font-medium text-white">
-                      <Mail className="h-4 w-4" /> Email
-                    </a>
-                    <a href="tel:9095450907" className="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 px-5 py-3 text-sm font-medium text-[#0f172a] dark:border-white/10 dark:text-white">
-                      <Phone className="h-4 w-4" /> Call
-                    </a>
-                    <a href={linkedInHref} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 px-5 py-3 text-sm font-medium text-[#0f172a] dark:border-white/10 dark:text-white">
+                    <a href={linkedInHref} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-500 px-5 py-3 text-sm font-medium text-white">
                       <Linkedin className="h-4 w-4" /> LinkedIn
+                    </a>
+                    <a href="mailto:Medina.Leonardo41@gmail.com" className="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 px-5 py-3 text-sm font-medium text-[#0f172a] dark:border-white/10 dark:text-white">
+                      <Mail className="h-4 w-4" /> Email
                     </a>
                     <a href={resumeHref} className="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 px-5 py-3 text-sm font-medium text-[#0f172a] dark:border-white/10 dark:text-white">
                       <Download className="h-4 w-4" /> Resume
+                    </a>
+                    <a href="tel:9095450907" className="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 px-5 py-3 text-sm font-medium text-[#0f172a] dark:border-white/10 dark:text-white">
+                      <Phone className="h-4 w-4" /> Call
                     </a>
                   </div>
                 </div>
