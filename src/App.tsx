@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowUpRight,
   Briefcase,
+  ChevronDown,
   ChevronRight,
   Download,
   Layers3,
@@ -96,25 +97,34 @@ const projects = [
     title: "Integrated Automotive Finance System",
     subtitle: "Process review and data flow centralization concept",
     blurb:
-      "Reviewed how customer and deal information moved through the finance process and documented where handoffs and delays were happening.",
+      "Analyzed the end-to-end F&I workflow and designed a centralized system that reduces repeated entry, manual handoffs, and disconnected deal processing.",
     metrics: ["Process review", "Handoffs documented", "Data models created"],
     accent: "from-blue-600/20 to-slate-400/10",
     problem:
-      "Customer and deal information moved through multiple finance steps with handoffs and delays that made the process less consistent.",
+      "Customer and deal information in the F&I process is spread across multiple systems, requiring repeated data entry and manual handoffs between CRM, lenders, DMV, and insurance providers. This creates delays, errors, and slows down deal completion and funding.",
     insight:
-      "The system could improve by centralizing how finance information is shared across steps.",
+      "The core issue isn't just process inefficiency-it's system fragmentation. Each step operates in isolation, forcing the same data to be re-entered and validated multiple times.",
+    productDirection:
+      "Analyzed the end-to-end deal workflow and designed an integrated system that centralizes customer and deal data. The system connects lenders, DMV, and insurance providers through APIs, reducing manual entry and enabling real-time data flow.",
     decisions: [
-      "Reviewed how customer and deal information moved through the finance process.",
-      "Documented where handoffs and delays were happening.",
-      "Created process diagrams to show how finance information could be centralized.",
-      "Created data models to show how finance information could be shared more consistently across steps."
+      "Centralized all deal data into a single system of record.",
+      "Replaced manual entry with API-based integrations.",
+      "Automated validation to reduce errors and rework.",
+      "Standardized data flow across all external partners."
     ],
     tradeoffs: [
-      "Focused on systems analysis and process documentation rather than implementation.",
-      "Kept the scope centered on the finance process instead of broader dealership systems."
+      "Required coordination across multiple external systems.",
+      "Initial implementation complexity due to integrations.",
+      "Prioritized core workflow improvements over edge-case handling."
+    ],
+    nextSteps: [
+      "Define API standards for lender and DMV integrations.",
+      "Build interface for real-time deal tracking.",
+      "Add audit and compliance tracking features.",
+      "Expand to support additional financing and insurance providers."
     ],
     outcome:
-      "The project produced process diagrams and data models showing how finance information could move more consistently across steps.",
+      "Developed a structured system design that replaces disconnected workflows with a centralized platform, reducing redundant data entry and improving process speed, accuracy, and visibility across the deal lifecycle.",
     visualSet: "finance"
   },
   {
@@ -124,25 +134,34 @@ const projects = [
     title: "Event-First Social Matching — R4V3",
     subtitle: "Product concept for live-event user connection",
     blurb:
-      "Designed a product concept focused on connecting users attending the same live events, defining core features such as event matching, user profiles, and real-time interaction.",
-    metrics: ["Core features defined", "User flows mapped", "Alternatives explored"],
+      "Designed and built an event-first system where users RSVP to events, opt into visibility through 'Looking for Crew,' and connect only within shared event context.",
+    metrics: [],
     accent: "from-blue-500/20 to-cyan-400/10",
     problem:
-      "The project examined how people currently connect at events and where current solutions leave gaps.",
+      "People attend events alone but have no reliable way to connect with others going to the same place. Existing platforms are either too broad, poorly timed, or focused on profiles rather than shared context.",
     insight:
-      "A stronger product concept needed clear feature definitions, end-to-end user flows, and a better understanding of user behavior and alternatives.",
+      "The strongest signal for connection isn't identity-it's attendance. If two users are going to the same event, relevance and intent are already established.",
+    productDirection:
+      "Designed and built an event-first system where users RSVP to events, opt into visibility through 'Looking for Crew,' and connect only within shared event context. This shifts discovery from random matching to high-intent interactions.",
     decisions: [
-      "Defined core features such as event matching, user profiles, and real-time interaction.",
-      "Mapped end-to-end user flows.",
-      "Translated flows into structured feature requirements.",
-      "Explored user behavior and existing alternatives to identify gaps in current solutions."
+      "Matching is only enabled after RSVP to maintain high-intent interactions.",
+      "'Looking for Crew' acts as an explicit visibility control.",
+      "Chat is scoped to events to keep interactions relevant.",
+      "Event feed is curated to prioritize quality over volume."
     ],
     tradeoffs: [
-      "Focused on product concept development instead of a launched application.",
-      "Centered on requirements and flow design before deeper implementation work."
+      "Limited event volume early to maintain relevance.",
+      "Prioritized MVP flow over advanced ranking logic.",
+      "Focused on coordination utility rather than full social features."
+    ],
+    nextSteps: [
+      "Improve matching relevance (ranking, filters).",
+      "Add onboarding to clarify visibility behavior.",
+      "Introduce trust signals (shared context, activity).",
+      "Expand event ingestion and coverage."
     ],
     outcome:
-      "The project turned event-connection research into a structured digital product concept with mapped flows and defined feature requirements."
+      "Built a working MVP validating the core loop: RSVP -> Visibility -> Matching -> Chat. This confirmed that event-based context can drive more meaningful and timely connections."
   }
 ] as const;
 
@@ -223,8 +242,25 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 export default function App() {
   const [dark, setDark] = useState(true);
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [expandedSections, setExpandedSections] = useState<string[]>([]);
 
   const activeProject = useMemo(() => projects.find((project) => project.id === activeId) ?? null, [activeId]);
+
+  const toggleSection = (sectionId: string) => {
+    setExpandedSections((current) =>
+      current.includes(sectionId) ? current.filter((item) => item !== sectionId) : [...current, sectionId]
+    );
+  };
+
+  const openProject = (projectId: string) => {
+    setActiveId(projectId);
+    setExpandedSections([]);
+  };
+
+  const closeProject = () => {
+    setActiveId(null);
+    setExpandedSections([]);
+  };
 
   return (
     <div className={dark ? "dark bg-[#06070b] text-white" : "bg-[#f7f9fc] text-[#0f172a]"}>
@@ -389,7 +425,7 @@ export default function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.45, delay: index * 0.04 }}
-                  onClick={() => setActiveId(project.id)}
+                  onClick={() => openProject(project.id)}
                   className="group relative overflow-hidden rounded-[1.75rem] border border-black/6 bg-white/75 p-6 text-left shadow-[0_12px_40px_rgba(15,23,42,0.05)] transition hover:-translate-y-1 hover:border-blue-500/20 dark:border-white/10 dark:bg-white/5 dark:shadow-none"
                 >
                   <div className={`absolute inset-0 bg-gradient-to-br ${project.accent} opacity-0 transition duration-300 group-hover:opacity-100`} />
@@ -425,13 +461,15 @@ export default function App() {
                         </div>
                       </div>
                     ) : null}
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      {project.metrics.map((item) => (
-                        <span key={item} className="rounded-full border border-black/8 bg-white/85 px-3 py-1.5 text-xs text-black/70 dark:border-white/10 dark:bg-white/5 dark:text-white/70">
-                          {item}
-                        </span>
-                      ))}
-                    </div>
+                    {project.metrics.length ? (
+                      <div className="mt-5 flex flex-wrap gap-2">
+                        {project.metrics.map((item) => (
+                          <span key={item} className="rounded-full border border-black/8 bg-white/85 px-3 py-1.5 text-xs text-black/70 dark:border-white/10 dark:bg-white/5 dark:text-white/70">
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    ) : null}
                   </div>
                 </motion.button>
               ))}
@@ -518,7 +556,7 @@ export default function App() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4 backdrop-blur-sm"
-              onClick={() => setActiveId(null)}
+              onClick={closeProject}
             >
               <motion.div
                 initial={{ opacity: 0, y: 24, scale: 0.98 }}
@@ -534,104 +572,228 @@ export default function App() {
                     <h3 className="mt-3 text-3xl font-semibold tracking-tight">{activeProject.title}</h3>
                     <div className="mt-2 text-sm text-black/55 dark:text-white/55">{activeProject.role} · {activeProject.subtitle}</div>
                   </div>
-                  <button onClick={() => setActiveId(null)} className="rounded-full border border-black/10 p-2 text-[#0f172a] dark:border-white/10 dark:text-white" aria-label="Close modal">
+                  <button onClick={closeProject} className="rounded-full border border-black/10 p-2 text-[#0f172a] dark:border-white/10 dark:text-white" aria-label="Close modal">
                     <X className="h-4 w-4" />
                   </button>
                 </div>
 
-                {activeProject.id === "finance" ? (
-                  <div className="mt-8 rounded-[1.75rem] border border-sky-500/20 bg-gradient-to-br from-sky-50 via-white to-slate-50 p-4 shadow-[0_18px_50px_rgba(14,116,144,0.08)] dark:from-sky-500/10 dark:via-[#07111e] dark:to-slate-500/10 dark:shadow-none">
-                    <div className="flex items-center justify-between gap-4 border-b border-sky-500/15 px-2 pb-4">
-                      <div>
-                        <div className="text-xs uppercase tracking-[0.2em] text-sky-700 dark:text-sky-300">Visual appendix</div>
-                        <div className="mt-1 text-lg font-semibold text-[#0f172a] dark:text-white">Direct PDF diagrams from the automotive systems project</div>
-                      </div>
-                      <div className="text-xs text-[#334155] dark:text-white/60">Pages 15, 18, 19, 20</div>
-                    </div>
-                    <div className="mt-5 grid gap-4 lg:grid-cols-2">
-                      {financeVisuals.map((visual) => (
-                        <figure key={visual.src} className="overflow-hidden rounded-[1.25rem] border border-sky-500/15 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.06)] dark:border-white/10 dark:bg-[#08101c] dark:shadow-none">
-                          <img src={visual.src} alt={visual.title} className="w-full object-cover object-top" />
-                          <figcaption className="border-t border-black/5 px-4 py-3 dark:border-white/10">
-                            <div className="text-sm font-semibold text-[#0f172a] dark:text-white">{visual.title}</div>
-                            <div className="mt-1 text-xs leading-6 text-[#475569] dark:text-white/60">{visual.caption}</div>
-                          </figcaption>
-                        </figure>
-                      ))}
-                    </div>
-                  </div>
-                ) : activeProject.id === "events" ? (
-                  <div className="mt-8 rounded-[1.9rem] border border-orange-500/20 bg-[radial-gradient(circle_at_top,rgba(251,146,60,0.14),transparent_45%),linear-gradient(135deg,#130e0a,#0b1020)] p-5 shadow-[0_24px_70px_rgba(15,23,42,0.24)] dark:shadow-[0_24px_70px_rgba(0,0,0,0.35)]">
-                    <div className="flex items-center justify-between gap-4 border-b border-white/10 px-1 pb-4">
-                      <div>
-                        <div className="text-xs uppercase tracking-[0.2em] text-orange-300">Product walkthrough</div>
-                        <div className="mt-1 text-lg font-semibold text-white">Three screens that explain the R4V3 event-first matching flow</div>
-                      </div>
-                      <div className="text-xs text-white/55">Browse, opt-in, coordinate</div>
-                    </div>
-                    <div className="mt-5 grid gap-4 lg:grid-cols-[1.12fr_0.88fr]">
-                      <figure className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c0c0f] shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
-                        <img src={r4v3Visuals[0].src} alt={r4v3Visuals[0].title} className="w-full object-cover object-top" />
-                        <figcaption className="border-t border-white/10 px-4 py-4">
-                          <div className="text-sm font-semibold text-white">{r4v3Visuals[0].title}</div>
-                          <div className="mt-1 text-sm leading-6 text-white/65">{r4v3Visuals[0].caption}</div>
-                        </figcaption>
-                      </figure>
-                      <div className="grid gap-4">
-                        {r4v3Visuals.slice(1).map((visual) => (
-                          <figure key={visual.src} className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c0c0f] shadow-[0_18px_40px_rgba(0,0,0,0.28)]">
-                            <img src={visual.src} alt={visual.title} className="w-full object-cover object-top" />
-                            <figcaption className="border-t border-white/10 px-4 py-4">
-                              <div className="text-sm font-semibold text-white">{visual.title}</div>
-                              <div className="mt-1 text-sm leading-6 text-white/65">{visual.caption}</div>
-                            </figcaption>
-                          </figure>
-                        ))}
-                      </div>
-                    </div>
+                {activeProject.metrics.length ? (
+                  <div className="mt-8 grid gap-6 sm:grid-cols-3">
+                    {activeProject.metrics.map((metric) => (
+                      <div key={metric} className="rounded-2xl border border-black/6 bg-white/80 p-4 text-sm dark:border-white/10 dark:bg-white/5">{metric}</div>
+                    ))}
                   </div>
                 ) : null}
 
-                <div className="mt-8 grid gap-6 sm:grid-cols-3">
-                  {activeProject.metrics.map((metric) => (
-                    <div key={metric} className="rounded-2xl border border-black/6 bg-white/80 p-4 text-sm dark:border-white/10 dark:bg-white/5">{metric}</div>
-                  ))}
-                </div>
+                <div className="mt-8 space-y-4">
+                  {activeProject.id === "finance" ? (
+                    <div className="overflow-hidden rounded-[1.5rem] border border-sky-500/20 bg-gradient-to-br from-sky-50 via-white to-slate-50 shadow-[0_18px_50px_rgba(14,116,144,0.08)] dark:from-sky-500/10 dark:via-[#07111e] dark:to-slate-500/10 dark:shadow-none">
+                      <button
+                        type="button"
+                        onClick={() => toggleSection("finance-visuals")}
+                        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+                      >
+                        <div>
+                          <div className="text-xs uppercase tracking-[0.2em] text-sky-700 dark:text-sky-300">Visual appendix</div>
+                          <div className="mt-1 text-base font-semibold text-[#0f172a] dark:text-white">Direct PDF diagrams from the automotive systems project</div>
+                          <div className="mt-1 text-xs text-[#475569] dark:text-white/60">4 diagrams, pages 15, 18, 19, 20</div>
+                        </div>
+                        <ChevronDown className={`h-5 w-5 shrink-0 text-sky-700 transition-transform dark:text-sky-300 ${expandedSections.includes("finance-visuals") ? "rotate-180" : ""}`} />
+                      </button>
+                      {expandedSections.includes("finance-visuals") ? (
+                        <div className="border-t border-sky-500/15 px-5 pb-5 pt-4">
+                          <div className="grid gap-4 lg:grid-cols-2">
+                            {financeVisuals.map((visual) => (
+                              <figure key={visual.src} className="overflow-hidden rounded-[1.25rem] border border-sky-500/15 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.06)] dark:border-white/10 dark:bg-[#08101c] dark:shadow-none">
+                                <img src={visual.src} alt={visual.title} className="w-full object-cover object-top" />
+                                <figcaption className="border-t border-black/5 px-4 py-3 dark:border-white/10">
+                                  <div className="text-sm font-semibold text-[#0f172a] dark:text-white">{visual.title}</div>
+                                  <div className="mt-1 text-xs leading-6 text-[#475569] dark:text-white/60">{visual.caption}</div>
+                                </figcaption>
+                              </figure>
+                            ))}
+                          </div>
+                        </div>
+                      ) : null}
+                    </div>
+                  ) : null}
 
-                <div className="mt-8 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-                  <div className="space-y-6">
-                    <div>
-                      <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Project focus</div>
-                      <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.problem}</p>
-                    </div>
-                    <div>
-                      <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Supporting detail</div>
-                      <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.insight}</p>
-                    </div>
-                    <div>
-                      <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Outcome</div>
-                      <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.outcome}</p>
-                    </div>
-                  </div>
+                  {activeProject.id === "events" ? (
+                    <>
+                      <div className="overflow-hidden rounded-[1.5rem] border border-orange-500/20 bg-[radial-gradient(circle_at_top,rgba(251,146,60,0.14),transparent_45%),linear-gradient(135deg,#130e0a,#0b1020)] shadow-[0_24px_70px_rgba(15,23,42,0.24)] dark:shadow-[0_24px_70px_rgba(0,0,0,0.35)]">
+                        <button
+                          type="button"
+                          onClick={() => toggleSection("events-visuals")}
+                          className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+                        >
+                          <div>
+                            <div className="text-xs uppercase tracking-[0.2em] text-orange-300">Product walkthrough</div>
+                            <div className="mt-1 text-base font-semibold text-white">Three screens that explain the R4V3 event-first matching flow</div>
+                            <div className="mt-1 text-xs text-white/55">Browse, opt-in, coordinate</div>
+                          </div>
+                          <ChevronDown className={`h-5 w-5 shrink-0 text-orange-300 transition-transform ${expandedSections.includes("events-visuals") ? "rotate-180" : ""}`} />
+                        </button>
+                        {expandedSections.includes("events-visuals") ? (
+                          <div className="border-t border-white/10 px-5 pb-5 pt-4">
+                            <div className="grid gap-4 lg:grid-cols-[1.12fr_0.88fr]">
+                              <figure className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c0c0f] shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
+                                <img src={r4v3Visuals[0].src} alt={r4v3Visuals[0].title} className="w-full object-cover object-top" />
+                                <figcaption className="border-t border-white/10 px-4 py-4">
+                                  <div className="text-sm font-semibold text-white">{r4v3Visuals[0].title}</div>
+                                  <div className="mt-1 text-sm leading-6 text-white/65">{r4v3Visuals[0].caption}</div>
+                                </figcaption>
+                              </figure>
+                              <div className="grid gap-4">
+                                {r4v3Visuals.slice(1).map((visual) => (
+                                  <figure key={visual.src} className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c0c0f] shadow-[0_18px_40px_rgba(0,0,0,0.28)]">
+                                    <img src={visual.src} alt={visual.title} className="w-full object-cover object-top" />
+                                    <figcaption className="border-t border-white/10 px-4 py-4">
+                                      <div className="text-sm font-semibold text-white">{visual.title}</div>
+                                      <div className="mt-1 text-sm leading-6 text-white/65">{visual.caption}</div>
+                                    </figcaption>
+                                  </figure>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        ) : null}
+                      </div>
 
-                  <div className="space-y-6">
-                    <div>
-                      <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Resume-aligned highlights</div>
-                      <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
-                        {activeProject.decisions.map((item) => (
-                          <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
-                        ))}
-                      </ul>
+                      <div className="mt-8 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+                        <div className="space-y-6">
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Problem</div>
+                            <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.problem}</p>
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Insight</div>
+                            <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.insight}</p>
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Product Direction</div>
+                            <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.productDirection}</p>
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Outcome</div>
+                            <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.outcome}</p>
+                          </div>
+                        </div>
+
+                        <div className="space-y-6">
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Key Product Decisions</div>
+                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                              {activeProject.decisions.map((item) => (
+                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Tradeoffs</div>
+                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                              {activeProject.tradeoffs.map((item) => (
+                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Next Steps</div>
+                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                              {activeProject.nextSteps.map((item) => (
+                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : null}
+
+                  {activeProject.id === "finance" ? (
+                    <div className="mt-8 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+                      <div className="space-y-6">
+                        <div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Problem</div>
+                          <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.problem}</p>
+                        </div>
+                        <div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Insight</div>
+                          <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.insight}</p>
+                        </div>
+                        <div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Product Direction</div>
+                          <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.productDirection}</p>
+                        </div>
+                        <div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Outcome</div>
+                          <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.outcome}</p>
+                        </div>
+                      </div>
+
+                      <div className="space-y-6">
+                        <div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Key Product Decisions</div>
+                          <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                            {activeProject.decisions.map((item) => (
+                              <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Tradeoffs</div>
+                          <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                            {activeProject.tradeoffs.map((item) => (
+                              <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Next Steps</div>
+                          <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                            {activeProject.nextSteps.map((item) => (
+                              <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Scope</div>
-                      <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
-                        {activeProject.tradeoffs.map((item) => (
-                          <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
-                        ))}
-                      </ul>
+                  ) : activeProject.id !== "events" ? (
+                    <div className="mt-8 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+                      <div className="space-y-6">
+                        <div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Project focus</div>
+                          <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.problem}</p>
+                        </div>
+                        <div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Supporting detail</div>
+                          <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.insight}</p>
+                        </div>
+                        <div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Outcome</div>
+                          <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.outcome}</p>
+                        </div>
+                      </div>
+
+                      <div className="space-y-6">
+                        <div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Resume-aligned highlights</div>
+                          <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                            {activeProject.decisions.map((item) => (
+                              <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Scope</div>
+                          <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                            {activeProject.tradeoffs.map((item) => (
+                              <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  ) : null}
                 </div>
               </motion.div>
             </motion.div>
