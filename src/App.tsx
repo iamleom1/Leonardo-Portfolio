@@ -497,7 +497,7 @@ export default function App() {
             <div className="max-w-3xl">
               <SectionLabel>Experience</SectionLabel>
               <div className="mt-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-                <h2 className="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">Experience & Product Foundations</h2>
+                <h2 className="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">Experience & Product Thinking</h2>
                 <p className="max-w-xl text-sm leading-7 text-black/60 dark:text-white/60">
                   Frontline sales, operations, logistics, and customer-facing work that shaped how I approach execution, process, and user needs.
                 </p>
