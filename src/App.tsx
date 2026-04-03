@@ -64,31 +64,40 @@ const r4v3Visuals = [
 
 const projects = [
   {
-    id: "spot",
+    id: "events",
     category: "Applied Project Work",
-    role: "Product Development Project",
-    title: "Seat Placement Optimization Technology (S.P.O.T.)",
-    subtitle: "MVP concept for a classroom seat-availability system",
+    role: "Product Design & Development (Digital) Project",
+    title: "Event-First Social Matching — R4V3",
+    subtitle: "Product concept for live-event user connection",
     blurb:
-      "Built an MVP concept for a classroom seat-availability system using basic prototyping, 3D modeling, and early UI testing to assess feasibility.",
-    metrics: ["MVP concept", "3D modeling", "Early UI testing"],
-    accent: "from-sky-500/20 to-blue-400/10",
+      "Built and tested a working MVP with event-based matching and real-time chat.",
+    metrics: [],
+    accent: "from-blue-500/20 to-cyan-400/10",
     problem:
-      "The project focused on creating a classroom seat-availability concept and testing whether the idea was feasible through early product development work.",
+      "People attend events alone but have no reliable way to connect with others going to the same place. Existing platforms are either too broad, poorly timed, or focused on profiles rather than shared context.",
     insight:
-      "The concept needed to be explored through prototyping, modeling, and interface testing rather than left at the idea stage.",
+      "The strongest signal for connection isn't identity-it's attendance. If two users are going to the same event, relevance and intent are already established.",
+    productDirection:
+      "Designed and built an event-first system where users RSVP to events, opt into visibility through 'Looking for Crew,' and connect only within shared event context. This shifts discovery from random matching to high-intent interactions.",
     decisions: [
-      "Built an MVP concept using basic prototyping.",
-      "Used 3D modeling to support the concept.",
-      "Included early UI testing to assess feasibility.",
-      "Worked with a four-person team to ensure Marketing, Financing, and Ethical Concerns all aligned and were ready for presentation."
+      "Matching is only enabled after RSVP to maintain high-intent interactions.",
+      "'Looking for Crew' acts as an explicit visibility control.",
+      "Chat is scoped to events to keep interactions relevant.",
+      "Event feed is curated to prioritize quality over volume."
     ],
     tradeoffs: [
-      "Focused on feasibility instead of a full launch-ready product.",
-      "Kept the scope centered on concept development and presentation readiness."
+      "Limited event volume early to maintain relevance.",
+      "Prioritized MVP flow over advanced ranking logic.",
+      "Focused on coordination utility rather than full social features."
+    ],
+    nextSteps: [
+      "Improve matching relevance (ranking, filters).",
+      "Add onboarding to clarify visibility behavior.",
+      "Introduce trust signals (shared context, activity).",
+      "Expand event ingestion and coverage."
     ],
     outcome:
-      "The project produced a clearer MVP concept supported by prototyping, modeling, and team coordination across presentation areas."
+      "Built a working MVP validating the core loop: RSVP -> Visibility -> Matching -> Chat. This confirmed that event-based context can drive more meaningful and timely connections."
   },
   {
     id: "finance",
@@ -128,40 +137,31 @@ const projects = [
     visualSet: "finance"
   },
   {
-    id: "events",
+    id: "spot",
     category: "Applied Project Work",
-    role: "Product Design & Development (Digital) Project",
-    title: "Event-First Social Matching — R4V3",
-    subtitle: "Product concept for live-event user connection",
+    role: "Product Development Project",
+    title: "Seat Placement Optimization Technology (S.P.O.T.)",
+    subtitle: "MVP concept for a classroom seat-availability system",
     blurb:
-      "Built and tested a working MVP with event-based matching and real-time chat.",
-    metrics: [],
-    accent: "from-blue-500/20 to-cyan-400/10",
+      "Built an MVP concept for a classroom seat-availability system using basic prototyping, 3D modeling, and early UI testing to assess feasibility.",
+    metrics: ["MVP concept", "3D modeling", "Early UI testing"],
+    accent: "from-sky-500/20 to-blue-400/10",
     problem:
-      "People attend events alone but have no reliable way to connect with others going to the same place. Existing platforms are either too broad, poorly timed, or focused on profiles rather than shared context.",
+      "The project focused on creating a classroom seat-availability concept and testing whether the idea was feasible through early product development work.",
     insight:
-      "The strongest signal for connection isn't identity-it's attendance. If two users are going to the same event, relevance and intent are already established.",
-    productDirection:
-      "Designed and built an event-first system where users RSVP to events, opt into visibility through 'Looking for Crew,' and connect only within shared event context. This shifts discovery from random matching to high-intent interactions.",
+      "The concept needed to be explored through prototyping, modeling, and interface testing rather than left at the idea stage.",
     decisions: [
-      "Matching is only enabled after RSVP to maintain high-intent interactions.",
-      "'Looking for Crew' acts as an explicit visibility control.",
-      "Chat is scoped to events to keep interactions relevant.",
-      "Event feed is curated to prioritize quality over volume."
+      "Built an MVP concept using basic prototyping.",
+      "Used 3D modeling to support the concept.",
+      "Included early UI testing to assess feasibility.",
+      "Worked with a four-person team to ensure Marketing, Financing, and Ethical Concerns all aligned and were ready for presentation."
     ],
     tradeoffs: [
-      "Limited event volume early to maintain relevance.",
-      "Prioritized MVP flow over advanced ranking logic.",
-      "Focused on coordination utility rather than full social features."
-    ],
-    nextSteps: [
-      "Improve matching relevance (ranking, filters).",
-      "Add onboarding to clarify visibility behavior.",
-      "Introduce trust signals (shared context, activity).",
-      "Expand event ingestion and coverage."
+      "Focused on feasibility instead of a full launch-ready product.",
+      "Kept the scope centered on concept development and presentation readiness."
     ],
     outcome:
-      "Built a working MVP validating the core loop: RSVP -> Visibility -> Matching -> Chat. This confirmed that event-based context can drive more meaningful and timely connections."
+      "The project produced a clearer MVP concept supported by prototyping, modeling, and team coordination across presentation areas."
   }
 ] as const;
 
