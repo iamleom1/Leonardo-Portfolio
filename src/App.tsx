@@ -66,38 +66,64 @@ const projects = [
   {
     id: "events",
     category: "Applied Project Work",
-    role: "Product Design & Development (Digital) Project",
-    title: "Event-First Social Matching — R4V3",
+    role: "Founder · Product Manager",
+    title: "R4V3 — Event-Based Social Platform for Live Events",
     subtitle: "Built a working MVP for event-based social matching with RSVP-driven visibility and real-time chat.",
     blurb:
-      "Built and tested a working MVP with event-based matching and real-time chat.",
+      "Designed an event-based social platform to solve friction in how solo attendees connect at live events, focusing on matching logic, user engagement, and MVP prioritization.",
     metrics: [],
     accent: "from-blue-500/20 to-cyan-400/10",
+    overview:
+      "R4V3 is a mobile app designed to help solo event attendees connect with others going to the same event. Unlike traditional social or dating apps, the platform focuses on event-based matching, allowing users to meet people in a shared, real-world context.",
     problem:
-      "People attend events alone but have no reliable way to connect with others going to the same place. Existing platforms are either too broad, poorly timed, or focused on profiles rather than shared context.",
+      "Many people attend concerts and live events alone but struggle to connect with others in a safe and natural way. Existing platforms prioritize profile-based matching, which feels disconnected from the actual event experience and creates friction for users looking to meet people in the moment.",
+    users: [
+      "Solo event attendees (concerts, festivals, raves)",
+      "Users looking for a safer, more natural way to connect",
+      "People who prefer shared experiences over profile-based matching"
+    ],
     insight:
-      "The strongest signal for connection isn't identity-it's attendance. If two users are going to the same event, relevance and intent are already established.",
-    productDirection:
-      "Designed and built an event-first system where users RSVP to events, opt into visibility through 'Looking for Crew,' and connect only within shared event context. This shifts discovery from random matching to high-intent interactions.",
+      "Users are more likely to connect when they already share context. Matching based on attendance at the same event creates immediate common ground and reduces friction compared to traditional swipe-based apps.",
+    solution: [
+      "RSVP to events",
+      "Automatically enter a matching pool for that event",
+      "Connect with others attending the same event",
+      "Chat and coordinate meetups in real time"
+    ],
     decisions: [
-      "Matching is only enabled after RSVP to maintain high-intent interactions.",
-      "'Looking for Crew' acts as an explicit visibility control.",
-      "Chat is scoped to events to keep interactions relevant.",
-      "Event feed is curated to prioritize quality over volume."
+      "Event-Based Matching (Core Feature): Users are matched based on events they are attending rather than profiles alone. This prioritizes relevance and increases the likelihood of meaningful interactions.",
+      "'Going' = Automatic Visibility: When users mark themselves as 'Going,' they are automatically included in the event’s matching pool. This reduces friction and encourages participation, but required balancing visibility with user control.",
+      "MVP Feature Scope: Focused on launching core functionality including event discovery, RSVP system, matching interface, and chat functionality while delaying non-essential features to prioritize speed and usability."
     ],
     tradeoffs: [
-      "Limited event volume early to maintain relevance.",
-      "Prioritized MVP flow over advanced ranking logic.",
-      "Focused on coordination utility rather than full social features."
+      "Visibility vs Privacy: Automatic inclusion in matching increases engagement but required consideration of user control and comfort.",
+      "Simplicity vs Features: Chose a lean MVP to validate the concept rather than building a fully featured platform upfront."
+    ],
+    roleDetails: [
+      "Defined product concept and user problem",
+      "Designed feature set and user flow",
+      "Prioritized MVP scope and functionality",
+      "Built and tested core features (RSVP, matching, chat)",
+      "Iterated on onboarding and user experience"
+    ],
+    learnings: [
+      "Reducing friction is critical to user engagement",
+      "Clear user context (shared event) significantly improves matching relevance",
+      "Prioritizing core features early helps move faster and validate ideas"
+    ],
+    futureMetrics: [
+      "Match rate per event",
+      "User engagement (messages sent, connections made)",
+      "RSVP -> match conversion rate",
+      "Retention across multiple events"
     ],
     nextSteps: [
-      "Improve matching relevance (ranking, filters).",
-      "Add onboarding to clarify visibility behavior.",
-      "Introduce trust signals (shared context, activity).",
-      "Expand event ingestion and coverage."
+      "Improve ranking algorithm for matches",
+      "Add user controls for visibility and preferences",
+      "Explore monetization through event promoters and premium features"
     ],
     outcome:
-      "Built a working MVP validating the core loop: RSVP -> Visibility -> Matching -> Chat. This confirmed that event-based context can drive more meaningful and timely connections."
+      "Built and tested a working MVP that validated the concept of event-based matching and showed how shared context can improve relevance, reduce friction, and support real-time social coordination."
   },
   {
     id: "finance",
@@ -106,7 +132,7 @@ const projects = [
     title: "Integrated Automotive Finance System",
     subtitle: "Redesigned a fragmented F&I workflow into a centralized, API-driven system.",
     blurb:
-      "Analyzed the end-to-end F&I workflow and designed a centralized system that reduces repeated entry, manual handoffs, and disconnected deal processing.",
+      "Analyzed and redesigned a fragmented F&I workflow into a centralized system, focusing on reducing inefficiencies, improving data flow, and streamlining deal processing.",
     metrics: ["Workflow analysis", "System redesign", "Data architecture"],
     accent: "from-blue-600/20 to-slate-400/10",
     problem:
@@ -143,7 +169,7 @@ const projects = [
     title: "Seat Placement Optimization Technology (S.P.O.T.)",
     subtitle: "MVP concept for a classroom seat-availability system",
     blurb:
-      "Built an MVP concept for a classroom seat-availability system using basic prototyping, 3D modeling, and early UI testing to assess feasibility.",
+      "Developed a seat availability system to reduce search time in classrooms, focusing on usability, real-time visibility, and product feasibility.",
     metrics: ["MVP concept", "3D modeling", "Early UI testing"],
     accent: "from-sky-500/20 to-blue-400/10",
     problem:
@@ -307,14 +333,14 @@ export default function App() {
         <main className="relative z-10">
           <section className="mx-auto grid max-w-7xl gap-14 px-6 pb-16 pt-14 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:pb-24 lg:pt-20">
             <div className="max-w-3xl">
-              <SectionLabel>MBA Candidate</SectionLabel>
+              <SectionLabel>Product Management Candidate</SectionLabel>
               <motion.h1
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 className="mt-6 text-5xl font-semibold leading-[1.02] tracking-tight text-balance sm:text-6xl lg:text-7xl"
               >
-                Turning real customer behavior and data into product decisions.
+                Product Management Candidate Building User-Centered Digital Products
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
@@ -322,7 +348,15 @@ export default function App() {
                 transition={{ duration: 0.7, delay: 0.08 }}
                 className="mt-6 max-w-2xl text-lg leading-8 text-black/65 dark:text-white/68"
               >
-                Experience in high-volume sales and CRM workflows, focused on building products that improve how users discover, decide, and act.
+                I design and build products by combining user insight, data, and business strategy to improve engagement and decision-making across consumer platforms.
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.12 }}
+                className="mt-4 max-w-2xl text-sm font-medium text-blue-600 dark:text-blue-300"
+              >
+                Currently building an event-based social platform focused on real-world user interaction and engagement.
               </motion.p>
 
               <motion.div
@@ -331,26 +365,18 @@ export default function App() {
                 transition={{ duration: 0.7, delay: 0.16 }}
                 className="mt-8 flex flex-wrap items-center gap-3"
               >
-                <a href="#projects" className="inline-flex items-center gap-2 rounded-full bg-blue-500 px-5 py-3 text-sm font-medium text-white shadow-[0_12px_40px_rgba(59,130,246,0.28)] transition hover:translate-y-[-1px]">
-                  View applied project work <ArrowUpRight className="h-4 w-4" />
+                <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-blue-500 px-5 py-3 text-sm font-medium text-white shadow-[0_12px_40px_rgba(59,130,246,0.28)] transition hover:translate-y-[-1px]">
+                  <Mail className="h-4 w-4" /> Contact Me
                 </a>
-                <a href={resumeHref} className="inline-flex items-center gap-2 rounded-full border border-black/10 px-5 py-3 text-sm font-medium text-black/80 transition hover:border-blue-500/30 hover:text-blue-500 dark:border-white/10 dark:text-white/80 dark:hover:border-blue-400/30 dark:hover:text-blue-300">
-                  <Download className="h-4 w-4" /> Download resume
-                </a>
-                <a
-                  href={linkedInHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-black/10 px-5 py-3 text-sm font-medium text-black/80 transition hover:border-blue-500/30 hover:text-blue-500 dark:border-white/10 dark:text-white/80 dark:hover:border-blue-400/30 dark:hover:text-blue-300"
-                >
-                  <Linkedin className="h-4 w-4" /> LinkedIn
+                <a href="#projects" className="inline-flex items-center gap-2 rounded-full border border-black/10 px-5 py-3 text-sm font-medium text-black/80 transition hover:border-blue-500/30 hover:text-blue-500 dark:border-white/10 dark:text-white/80 dark:hover:border-blue-400/30 dark:hover:text-blue-300">
+                  View Projects <ArrowUpRight className="h-4 w-4" />
                 </a>
               </motion.div>
 
               <div className="mt-12 grid gap-4 sm:grid-cols-3">
                 {[
-                  ["Customer Behavior", "Experience across customer contact, negotiation, financing, and delivery."],
-                  ["Data & Decision Making", "Interested in work where data helps inform better business decisions."],
+                  ["Customer Behavior", "Experience analyzing user interactions across sales, negotiation, and conversion funnels."],
+                  ["Data & Decision Making", "Focused on using data to identify opportunities, improve processes, and guide product decisions."],
                   ["Cross-functional projects", "Background across product development, systems analysis, and team collaboration."]
                 ].map(([title, copy]) => (
                   <div key={title} className="rounded-3xl border border-black/6 bg-white/65 p-5 shadow-[0_10px_30px_rgba(15,23,42,0.04)] backdrop-blur dark:border-white/10 dark:bg-white/5 dark:shadow-none">
@@ -368,7 +394,7 @@ export default function App() {
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   <div className="rounded-2xl border border-black/6 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
                     <div className="text-xs uppercase tracking-[0.18em] text-black/45 dark:text-white/45">Education</div>
-                    <div className="mt-2 text-sm font-medium">MBA candidate · UC Riverside</div>
+                    <div className="mt-2 text-sm font-medium">MBA Candidate, UC Riverside</div>
                   </div>
                   <div className="rounded-2xl border border-black/6 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
                     <div className="text-xs uppercase tracking-[0.18em] text-black/45 dark:text-white/45">Based in</div>
@@ -380,14 +406,17 @@ export default function App() {
           </section>
 
           <section id="about" className="mx-auto max-w-7xl px-6 py-8 lg:px-8 lg:py-14">
-            <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+            <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr]">
               <div>
                 <SectionLabel>About</SectionLabel>
-                <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">Professional summary and education.</h2>
+                <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">Short introduction.</h2>
               </div>
               <div className="space-y-5 text-base leading-8 text-black/68 dark:text-white/68">
                 <p>
-                  MBA candidate with experience across sales operations, analytics, and cross-functional projects, interested in roles where data and customer insight inform better business decisions.
+                  I’m Leonardo Medina, an MBA candidate transitioning into product management with experience in sales operations and CRM optimization.
+                </p>
+                <p>
+                  I focus on understanding user problems, defining practical solutions, and building products that improve engagement and decision-making. My background in customer-facing environments shapes how I approach product decisions, particularly in consumer platforms where behavior and execution directly impact outcomes.
                 </p>
                 <div className="grid gap-4 md:grid-cols-2">
                   {education.map((item) => (
@@ -409,10 +438,10 @@ export default function App() {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <SectionLabel>Selected Work</SectionLabel>
-                <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">Product Case Studies.</h2>
+                <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">Selected Product Work</h2>
               </div>
               <p className="max-w-xl text-sm leading-7 text-black/60 dark:text-white/60">
-                These entries use the same project titles, scope, and supporting details reflected on the resume.
+                A collection of projects where I focused on solving user problems, making product decisions, and building practical solutions.
               </p>
             </div>
 
@@ -684,31 +713,43 @@ export default function App() {
                       <div className="mt-8 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
                         <div className="space-y-6">
                           <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Overview</div>
+                            <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.overview}</p>
+                          </div>
+                          <div>
                             <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Problem</div>
                             <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.problem}</p>
                           </div>
                           <div>
-                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Insight</div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">User</div>
+                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                              {activeProject.users.map((item) => (
+                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Key Insight</div>
                             <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.insight}</p>
                           </div>
                           <div>
-                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Product Direction</div>
-                            <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.productDirection}</p>
-                          </div>
-                          <div>
-                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Outcome</div>
-                            <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.outcome}</p>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Solution</div>
+                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                              {activeProject.solution.map((item) => (
+                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                              ))}
+                            </ul>
                           </div>
                         </div>
 
                         <div className="space-y-6">
                           <div>
                             <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Key Product Decisions</div>
-                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
-                              {activeProject.decisions.map((item) => (
-                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                            <ol className="mt-3 space-y-4 text-sm leading-7 text-black/68 dark:text-white/68">
+                              {activeProject.decisions.map((item, index) => (
+                                <li key={item} className="flex gap-3"><span className="text-blue-500 dark:text-blue-300">{index + 1}.</span> <span>{item}</span></li>
                               ))}
-                            </ul>
+                            </ol>
                           </div>
                           <div>
                             <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Tradeoffs</div>
@@ -719,8 +760,31 @@ export default function App() {
                             </ul>
                           </div>
                           <div>
-                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Next Steps</div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">My Role</div>
                             <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                              {activeProject.roleDetails.map((item) => (
+                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">What I Learned</div>
+                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                              {activeProject.learnings.map((item) => (
+                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Future Improvements / Metrics</div>
+                            <div className="mt-3 text-sm font-medium text-black/70 dark:text-white/70">Metrics I would track:</div>
+                            <ul className="mt-2 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                              {activeProject.futureMetrics.map((item) => (
+                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                              ))}
+                            </ul>
+                            <div className="mt-4 text-sm font-medium text-black/70 dark:text-white/70">Next Steps:</div>
+                            <ul className="mt-2 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
                               {activeProject.nextSteps.map((item) => (
                                 <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
                               ))}
