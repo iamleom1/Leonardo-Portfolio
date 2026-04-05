@@ -74,21 +74,20 @@ const projects = [
     metrics: [],
     accent: "from-blue-500/20 to-cyan-400/10",
     overview:
-      "R4V3 is a mobile app designed to help solo event attendees connect with others going to the same event. Unlike traditional social or dating apps, the platform focuses on event-based matching, allowing users to meet people in a shared, real-world context.",
+      "R4V3 is a mobile app designed to help solo event attendees connect with others going to the same event through event-based matching.",
     problem:
       "Many people attend concerts and live events alone but struggle to connect with others in a safe and natural way. Existing platforms prioritize profile-based matching, which feels disconnected from the actual event experience and creates friction for users looking to meet people in the moment.",
     users: [
       "Solo event attendees (concerts, festivals, raves)",
-      "Users looking for a safer, more natural way to connect",
-      "People who prefer shared experiences over profile-based matching"
+      "Users looking for a safer, more natural way to connect"
     ],
     insight:
       "Users are more likely to connect when they already share context. Matching based on attendance at the same event creates immediate common ground and reduces friction compared to traditional swipe-based apps.",
     solution: [
       "RSVP to events",
-      "Automatically enter a matching pool for that event",
-      "Connect with others attending the same event",
-      "Chat and coordinate meetups in real time"
+      "Automatically enter event-based matching",
+      "Connect with attendees",
+      "Chat and coordinate in real time"
     ],
     decisions: [
       "Event-Based Matching (Core Feature): Users are matched based on events they are attending rather than profiles alone. This prioritizes relevance and increases the likelihood of meaningful interactions.",
@@ -99,6 +98,8 @@ const projects = [
       "Visibility vs Privacy: Automatic inclusion in matching increases engagement but required consideration of user control and comfort.",
       "Simplicity vs Features: Chose a lean MVP to validate the concept rather than building a fully featured platform upfront."
     ],
+    expectedImpact:
+      "Designed to increase engagement by reducing friction in how users connect at events. Event-based matching creates immediate shared context, improving the likelihood of meaningful interactions compared to traditional platforms.",
     roleDetails: [
       "Defined product concept and user problem",
       "Designed feature set and user flow",
@@ -108,8 +109,7 @@ const projects = [
     ],
     learnings: [
       "Reducing friction is critical to user engagement",
-      "Clear user context (shared event) significantly improves matching relevance",
-      "Prioritizing core features early helps move faster and validate ideas"
+      "Shared context (events) significantly improves matching relevance"
     ],
     futureMetrics: [
       "Match rate per event",
@@ -710,17 +710,17 @@ export default function App() {
                         ) : null}
                       </div>
 
-                      <div className="mt-8 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-                        <div className="space-y-6">
-                          <div>
-                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Overview</div>
-                            <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.overview}</p>
-                          </div>
-                          <div>
-                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Problem</div>
-                            <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.problem}</p>
-                          </div>
-                          <div>
+                      <div className="mt-8 grid gap-4">
+                        <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Overview</div>
+                          <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.overview}</p>
+                        </div>
+                        <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Problem</div>
+                          <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.problem}</p>
+                        </div>
+                        <div className="grid gap-4 md:grid-cols-2">
+                          <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
                             <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">User</div>
                             <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
                               {activeProject.users.map((item) => (
@@ -728,30 +728,29 @@ export default function App() {
                               ))}
                             </ul>
                           </div>
-                          <div>
+                          <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
                             <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Key Insight</div>
                             <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.insight}</p>
                           </div>
-                          <div>
-                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Solution</div>
-                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
-                              {activeProject.solution.map((item) => (
-                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
-                              ))}
-                            </ul>
-                          </div>
                         </div>
-
-                        <div className="space-y-6">
-                          <div>
-                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Key Product Decisions</div>
-                            <ol className="mt-3 space-y-4 text-sm leading-7 text-black/68 dark:text-white/68">
-                              {activeProject.decisions.map((item, index) => (
-                                <li key={item} className="flex gap-3"><span className="text-blue-500 dark:text-blue-300">{index + 1}.</span> <span>{item}</span></li>
-                              ))}
-                            </ol>
-                          </div>
-                          <div>
+                        <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Solution</div>
+                          <ul className="mt-3 grid gap-3 md:grid-cols-2 text-sm leading-7 text-black/68 dark:text-white/68">
+                            {activeProject.solution.map((item) => (
+                              <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Key Product Decisions</div>
+                          <ol className="mt-3 space-y-4 text-sm leading-7 text-black/68 dark:text-white/68">
+                            {activeProject.decisions.map((item, index) => (
+                              <li key={item} className="flex gap-3"><span className="text-blue-500 dark:text-blue-300">{index + 1}.</span> <span>{item}</span></li>
+                            ))}
+                          </ol>
+                        </div>
+                        <div className="grid gap-4 md:grid-cols-2">
+                          <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
                             <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Tradeoffs</div>
                             <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
                               {activeProject.tradeoffs.map((item) => (
@@ -759,7 +758,13 @@ export default function App() {
                               ))}
                             </ul>
                           </div>
-                          <div>
+                          <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Expected Impact</div>
+                            <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.expectedImpact}</p>
+                          </div>
+                        </div>
+                        <div className="grid gap-4 md:grid-cols-2">
+                          <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
                             <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">My Role</div>
                             <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
                               {activeProject.roleDetails.map((item) => (
@@ -767,7 +772,7 @@ export default function App() {
                               ))}
                             </ul>
                           </div>
-                          <div>
+                          <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
                             <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">What I Learned</div>
                             <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
                               {activeProject.learnings.map((item) => (
@@ -775,21 +780,21 @@ export default function App() {
                               ))}
                             </ul>
                           </div>
-                          <div>
-                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Future Improvements / Metrics</div>
-                            <div className="mt-3 text-sm font-medium text-black/70 dark:text-white/70">Metrics I would track:</div>
-                            <ul className="mt-2 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
-                              {activeProject.futureMetrics.map((item) => (
-                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
-                              ))}
-                            </ul>
-                            <div className="mt-4 text-sm font-medium text-black/70 dark:text-white/70">Next Steps:</div>
-                            <ul className="mt-2 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
-                              {activeProject.nextSteps.map((item) => (
-                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
-                              ))}
-                            </ul>
-                          </div>
+                        </div>
+                        <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Future Improvements / Metrics</div>
+                          <div className="mt-3 text-sm font-medium text-black/70 dark:text-white/70">Metrics I would track:</div>
+                          <ul className="mt-2 grid gap-3 md:grid-cols-2 text-sm leading-7 text-black/68 dark:text-white/68">
+                            {activeProject.futureMetrics.map((item) => (
+                              <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                            ))}
+                          </ul>
+                          <div className="mt-4 text-sm font-medium text-black/70 dark:text-white/70">Next Steps:</div>
+                          <ul className="mt-2 grid gap-3 md:grid-cols-2 text-sm leading-7 text-black/68 dark:text-white/68">
+                            {activeProject.nextSteps.map((item) => (
+                              <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                            ))}
+                          </ul>
                         </div>
                       </div>
                     </>
