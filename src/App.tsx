@@ -679,32 +679,27 @@ export default function App() {
                         >
                           <div>
                             <div className="text-xs uppercase tracking-[0.2em] text-orange-300">Product walkthrough</div>
-                            <div className="mt-1 text-base font-semibold text-white">Three screens that explain the R4V3 event-first matching flow</div>
+                            <div className="mt-1 text-base font-semibold text-white">Event-Based Matching Flow</div>
                             <div className="mt-1 text-xs text-white/55">Browse, opt-in, coordinate</div>
                           </div>
                           <ChevronDown className={`h-5 w-5 shrink-0 text-orange-300 transition-transform ${expandedSections.includes("events-visuals") ? "rotate-180" : ""}`} />
                         </button>
                         {expandedSections.includes("events-visuals") ? (
                           <div className="border-t border-white/10 px-5 pb-5 pt-4">
-                            <div className="grid gap-4 lg:grid-cols-[1.12fr_0.88fr]">
-                              <figure className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c0c0f] shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
-                                <img src={r4v3Visuals[0].src} alt={r4v3Visuals[0].title} className="w-full object-cover object-top" />
-                                <figcaption className="border-t border-white/10 px-4 py-4">
-                                  <div className="text-sm font-semibold text-white">{r4v3Visuals[0].title}</div>
-                                  <div className="mt-1 text-sm leading-6 text-white/65">{r4v3Visuals[0].caption}</div>
-                                </figcaption>
-                              </figure>
-                              <div className="grid gap-4">
-                                {r4v3Visuals.slice(1).map((visual) => (
-                                  <figure key={visual.src} className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c0c0f] shadow-[0_18px_40px_rgba(0,0,0,0.28)]">
-                                    <img src={visual.src} alt={visual.title} className="w-full object-cover object-top" />
-                                    <figcaption className="border-t border-white/10 px-4 py-4">
-                                      <div className="text-sm font-semibold text-white">{visual.title}</div>
-                                      <div className="mt-1 text-sm leading-6 text-white/65">{visual.caption}</div>
-                                    </figcaption>
-                                  </figure>
-                                ))}
-                              </div>
+                            <div className="grid gap-4 lg:grid-cols-3 lg:items-start">
+                              {r4v3Visuals.map((visual, index) => (
+                                <figure key={visual.src} className={`overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c0c0f] shadow-[0_18px_40px_rgba(0,0,0,0.28)] ${index === 1 ? "lg:-mt-3" : ""}`}>
+                                  <div className="flex h-[540px] items-start justify-center overflow-hidden bg-black p-3">
+                                    <div className={`h-full overflow-hidden rounded-[1.25rem] border border-white/10 bg-[#121217] shadow-[0_12px_28px_rgba(0,0,0,0.35)] ${index === 1 ? "w-[19.75rem]" : "w-[18.5rem]"}`}>
+                                      <img src={visual.src} alt={visual.title} className="h-full w-full object-cover object-top" />
+                                    </div>
+                                  </div>
+                                  <figcaption className="border-t border-white/10 px-4 py-4">
+                                    <div className="text-sm font-semibold text-white">{visual.title}</div>
+                                    <div className="mt-1 text-sm leading-6 text-white/65">{visual.caption}</div>
+                                  </figcaption>
+                                </figure>
+                              ))}
                             </div>
                           </div>
                         ) : null}
