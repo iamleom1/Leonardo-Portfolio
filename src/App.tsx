@@ -348,7 +348,7 @@ export default function App() {
                 transition={{ duration: 0.7, delay: 0.08 }}
                 className="mt-6 max-w-2xl text-lg leading-8 text-black/65 dark:text-white/68"
               >
-                I design and build products by combining user insight, data, and business strategy to improve engagement and decision-making across consumer platforms.
+                I focus on understanding user problems, analyzing data, and applying business insight to inform product decisions and improve user experiences.
               </motion.p>
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
@@ -356,7 +356,7 @@ export default function App() {
                 transition={{ duration: 0.7, delay: 0.12 }}
                 className="mt-4 max-w-2xl text-sm font-medium text-blue-600 dark:text-blue-300"
               >
-                Currently building an event-based social platform focused on real-world user interaction and engagement.
+                Currently developing an event-based social platform focused on real-world user interaction and engagement.
               </motion.p>
 
               <motion.div
