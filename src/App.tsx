@@ -394,7 +394,7 @@ export default function App() {
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   <div className="rounded-2xl border border-black/6 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
                     <div className="text-xs uppercase tracking-[0.18em] text-black/45 dark:text-white/45">Education</div>
-                    <div className="mt-2 text-sm font-medium">MBA Candidate, UC Riverside</div>
+                    <div className="mt-2 text-sm font-medium">Master of Business Administration (Information Systems Concentration), UC Riverside</div>
                   </div>
                   <div className="rounded-2xl border border-black/6 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
                     <div className="text-xs uppercase tracking-[0.18em] text-black/45 dark:text-white/45">Based in</div>
