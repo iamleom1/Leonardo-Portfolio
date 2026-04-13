@@ -333,14 +333,14 @@ export default function App() {
         <main className="relative z-10">
           <section className="mx-auto grid max-w-7xl gap-14 px-6 pb-16 pt-14 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:pb-24 lg:pt-20">
             <div className="max-w-3xl">
-              <SectionLabel>Product Management Candidate</SectionLabel>
+              <SectionLabel>Aspiring Product Manager</SectionLabel>
               <motion.h1
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 className="mt-6 text-5xl font-semibold leading-[1.02] tracking-tight text-balance sm:text-6xl lg:text-7xl"
               >
-                Product Management Candidate Building User-Centered Digital Products
+                Product Management Candidate with Experience in Sales, Data, and User Behavior
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
@@ -348,7 +348,7 @@ export default function App() {
                 transition={{ duration: 0.7, delay: 0.08 }}
                 className="mt-6 max-w-2xl text-lg leading-8 text-black/65 dark:text-white/68"
               >
-                I focus on understanding user problems, analyzing data, and applying business insight to inform product decisions and improve user experiences.
+                Currently developing an event-based social platform exploring how shared context improves real-world user interaction.
               </motion.p>
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
