@@ -342,7 +342,9 @@ export default function App() {
               >
                 Product Management Candidate
                  <br />
+                <span className="text-white/70">
                 Focused on Sales, Data, and User Behavior
+              </span>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
