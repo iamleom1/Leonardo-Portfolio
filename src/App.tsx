@@ -46,17 +46,17 @@ const financeVisuals = [
 
 const r4v3Visuals = [
   {
-    src: `${assetBase}r4v3-visuals/IMG_6924.jpg`,
+    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-04-13 at 14.54.35.png`,
     title: "Browse Local Events",
     caption: "Users browse curated local events and signal intent by selecting ones they plan to attend."
   },
   {
-    src: `${assetBase}r4v3-visuals/IMG_6926.jpg`,
+    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-04-13 at 14.54.11.png`,
     title: "Crew Toggle (Core Feature)",
     caption: "Matching is activated at the event level—users opt into 'Looking for Crew' to become visible to others attending."
   },
   {
-    src: `${assetBase}r4v3-visuals/IMG_6925.jpg`,
+    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-04-13 at 14.55.29.png`,
     title: "Event Detail (Depth)",
     caption: "Event pages centralize RSVP, visibility controls, and real-time context for coordination and connection."
   }
@@ -679,7 +679,7 @@ export default function App() {
                                 <figure key={visual.src} className={`overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c0c0f] shadow-[0_18px_40px_rgba(0,0,0,0.28)] ${index === 1 ? "lg:-mt-3" : ""}`}>
                                   <div className="flex h-[540px] items-start justify-center overflow-hidden bg-black p-3">
                                     <div className={`h-full overflow-hidden rounded-[1.25rem] border border-white/10 bg-[#121217] shadow-[0_12px_28px_rgba(0,0,0,0.35)] ${index === 1 ? "w-[19.75rem]" : "w-[18.5rem]"}`}>
-                                      <img src={visual.src} alt={visual.title} className="h-full w-full object-cover object-top" />
+                                      <img src={visual.src} alt={visual.title} className="h-full w-full object-contain object-top" />
                                     </div>
                                   </div>
                                   <figcaption className="border-t border-white/10 px-4 py-4">
