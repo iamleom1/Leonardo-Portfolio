@@ -46,17 +46,17 @@ const financeVisuals = [
 
 const r4v3Visuals = [
   {
-    src: `${assetBase}r4v3-visuals/events-browse.png`,
+    src: `${assetBase}r4v3-visuals/IMG_6924.jpg`,
     title: "Browse Local Events",
     caption: "Users browse curated local events and signal intent by selecting ones they plan to attend."
   },
   {
-    src: `${assetBase}r4v3-visuals/crew-toggle.png`,
+    src: `${assetBase}r4v3-visuals/IMG_6926.jpg`,
     title: "Crew Toggle (Core Feature)",
     caption: "Matching is activated at the event level—users opt into 'Looking for Crew' to become visible to others attending."
   },
   {
-    src: `${assetBase}r4v3-visuals/event-detail.png`,
+    src: `${assetBase}r4v3-visuals/IMG_6925.jpg`,
     title: "Event Detail (Depth)",
     caption: "Event pages centralize RSVP, visibility controls, and real-time context for coordination and connection."
   }
@@ -67,63 +67,56 @@ const projects = [
     id: "events",
     category: "Applied Project Work",
     role: "Founder · Product Manager",
-    title: "R4V3 — Event-Based Social Platform for Live Events",
-    subtitle: "Built a working MVP for event-based social matching with RSVP-driven visibility and real-time chat.",
+    title: "R4V3 — Event-Based Social Platform",
+    subtitle: "Built an MVP to help users connect with others attending the same live events.",
     blurb:
-      "Designed an event-based social platform to solve friction in how solo attendees connect at live events, focusing on matching logic, user engagement, and MVP prioritization.",
+      "Built an event-first social platform concept focused on helping users connect with others attending the same live events.",
     metrics: [],
     accent: "from-blue-500/20 to-cyan-400/10",
     overview:
-      "R4V3 is a mobile app designed to help solo event attendees connect with others going to the same event through event-based matching.",
+      "Goal: Help users connect with others attending the same live events.",
     problem:
-      "Many people attend concerts and live events alone but struggle to connect with others in a safe and natural way. Existing platforms prioritize profile-based matching, which feels disconnected from the actual event experience and creates friction for users looking to meet people in the moment.",
+      "Solo attendees struggle to connect at live events. Existing platforms are profile-based and not context-aware, leading to low-quality interactions.",
     users: [
-      "Solo event attendees (concerts, festivals, raves)",
-      "Users looking for a safer, more natural way to connect"
+      "Solo attendees at live events",
+      "Users looking for shared-context interactions"
     ],
     insight:
-      "Users are more likely to connect when they already share context. Matching based on attendance at the same event creates immediate common ground and reduces friction compared to traditional swipe-based apps.",
-    solution: [
-      "RSVP to events",
-      "Automatically enter event-based matching",
-      "Connect with attendees",
-      "Chat and coordinate in real time"
-    ],
+      "Connections are more meaningful when users share time, place, and intent tied to a specific event.",
+    solution:
+      "Designed an event-first matching system where users opt into events they plan to attend. Matching is activated within that event context, allowing users to connect with others attending the same event.",
     decisions: [
-      "Event-Based Matching (Core Feature): Users are matched based on events they are attending rather than profiles alone. This prioritizes relevance and increases the likelihood of meaningful interactions.",
-      "'Going' = Automatic Visibility: When users mark themselves as 'Going,' they are automatically included in the event’s matching pool. This reduces friction and encourages participation, but required balancing visibility with user control.",
-      "MVP Feature Scope: Focused on launching core functionality including event discovery, RSVP system, matching interface, and chat functionality while delaying non-essential features to prioritize speed and usability."
+      "Event-based matching vs swipe model",
+      "RSVP-driven visibility",
+      "Temporary event interactions"
     ],
     tradeoffs: [
-      "Visibility vs Privacy: Automatic inclusion in matching increases engagement but required consideration of user control and comfort.",
-      "Simplicity vs Features: Chose a lean MVP to validate the concept rather than building a fully featured platform upfront."
+      "Lower total matches, but higher relevance and intent."
     ],
     expectedImpact:
-      "Designed to increase engagement by reducing friction in how users connect at events. Event-based matching creates immediate shared context, improving the likelihood of meaningful interactions compared to traditional platforms.",
+      "Event-based matching is designed to improve interaction quality by grounding discovery in shared context instead of profile-first browsing.",
     roleDetails: [
-      "Defined product concept and user problem",
-      "Designed feature set and user flow",
-      "Prioritized MVP scope and functionality",
-      "Built and tested core features (RSVP, matching, chat)",
-      "Iterated on onboarding and user experience"
+      "Defined the product goal and core user problem",
+      "Designed the event-first matching concept",
+      "Built the MVP and iterated using user feedback"
     ],
     learnings: [
-      "Reducing friction is critical to user engagement",
-      "Shared context (events) significantly improves matching relevance"
+      "Shared context improves relevance",
+      "Temporary interactions can increase intent"
     ],
     futureMetrics: [
-      "Match rate per event",
-      "User engagement (messages sent, connections made)",
-      "RSVP -> match conversion rate",
-      "Retention across multiple events"
+      "Primary: % of users connecting with at least one person per event",
+      "Supporting: Match -> message conversion rate",
+      "Supporting: RSVP -> interaction rate",
+      "Supporting: Retention (repeat event participation)"
     ],
     nextSteps: [
-      "Improve ranking algorithm for matches",
-      "Add user controls for visibility and preferences",
-      "Explore monetization through event promoters and premium features"
+      "Improve matching quality",
+      "Validate concept further with real users",
+      "Refine engagement and retention mechanics"
     ],
     outcome:
-      "Built and tested a working MVP that validated the concept of event-based matching and showed how shared context can improve relevance, reduce friction, and support real-time social coordination."
+      "Built an MVP and validated the concept through early user feedback, identifying event-based context as a key driver of engagement."
   },
   {
     id: "finance",
@@ -404,9 +397,9 @@ export default function App() {
             <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr]">
               <div>
                 <SectionLabel>About</SectionLabel>
-                <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">Short introduction.</h2>
+                <h2 className="mt-5 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl dark:text-white">Short introduction.</h2>
               </div>
-              <div className="space-y-5 text-base leading-8 text-black/68 dark:text-white/68">
+              <div className="space-y-5 text-base leading-8 text-slate-700 dark:text-white/68">
                 <p>
                   I’m Leonardo Medina, an MBA candidate transitioning into product management with experience in sales operations and CRM optimization.
                 </p>
@@ -415,12 +408,12 @@ export default function App() {
                 </p>
                 <div className="grid gap-4 md:grid-cols-2">
                   {education.map((item) => (
-                    <div key={item.school} className="rounded-[1.5rem] border border-black/6 bg-white/70 p-5 dark:border-white/10 dark:bg-white/5">
+                    <div key={item.school} className="rounded-[1.5rem] border border-slate-200/80 bg-white p-5 shadow-[0_10px_25px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
                       <div className="text-sm text-blue-500 dark:text-blue-300">{item.period}</div>
-                      <h3 className="mt-2 text-lg font-semibold">{item.school}</h3>
-                      <div className="mt-2 text-sm leading-7 text-black/65 dark:text-white/65">{item.degree}</div>
+                      <h3 className="mt-2 text-lg font-semibold text-slate-900 dark:text-white">{item.school}</h3>
+                      <div className="mt-2 text-sm leading-7 text-slate-700 dark:text-white/65">{item.degree}</div>
                       {item.notes.map((note) => (
-                        <div key={note} className="mt-2 text-sm leading-7 text-black/60 dark:text-white/60">{note}</div>
+                        <div key={note} className="mt-2 text-sm leading-7 text-slate-600 dark:text-white/60">{note}</div>
                       ))}
                     </div>
                   ))}
@@ -433,9 +426,9 @@ export default function App() {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <SectionLabel>Selected Work</SectionLabel>
-                <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">Selected Product Work</h2>
+                <h2 className="mt-5 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl dark:text-white">Selected Product Work</h2>
               </div>
-              <p className="max-w-xl text-sm leading-7 text-black/60 dark:text-white/60">
+              <p className="max-w-xl text-sm leading-7 text-slate-600 dark:text-white/60">
                 A collection of projects where I focused on solving user problems, making product decisions, and building practical solutions.
               </p>
             </div>
@@ -455,15 +448,15 @@ export default function App() {
                   <div className="relative flex min-h-[560px] w-full flex-col">
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <div className="text-xs uppercase tracking-[0.18em] text-black/45 dark:text-white/45">{project.category}</div>
-                        <h3 className="mt-3 text-2xl font-semibold tracking-tight">{project.title}</h3>
+                        <div className="text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-white/45">{project.category}</div>
+                        <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900 dark:text-white">{project.title}</h3>
                         <div className="mt-2 text-sm text-blue-500 dark:text-blue-300">{project.subtitle}</div>
                       </div>
                       <div className="rounded-full border border-black/8 bg-white/90 p-2 dark:border-white/10 dark:bg-white/5">
                         <ChevronRight className="h-4 w-4 text-blue-500 dark:text-blue-300" />
                       </div>
                     </div>
-                    <p className="mt-5 max-w-xl text-sm leading-7 text-black/63 dark:text-white/63">{project.blurb}</p>
+                    <p className="mt-5 max-w-xl text-sm leading-7 text-slate-600 dark:text-white/63">{project.blurb}</p>
                     <div className="mt-5 flex-1">
                       {project.id === "finance" ? (
                         <div className="h-full overflow-hidden rounded-[1.4rem] border border-sky-500/20 bg-gradient-to-br from-sky-100 via-white to-slate-100 dark:from-sky-500/10 dark:via-white/5 dark:to-slate-500/10">
@@ -523,7 +516,7 @@ export default function App() {
               <SectionLabel>Experience</SectionLabel>
               <div className="mt-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                 <h2 className="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">Experience & Product Thinking</h2>
-                <p className="max-w-xl text-sm leading-7 text-black/60 dark:text-white/60">
+                <p className="max-w-xl text-sm leading-7 text-slate-600 dark:text-white/60">
                   Frontline sales, operations, logistics, and customer-facing work that shaped how I approach execution, process, and user needs.
                 </p>
               </div>
@@ -535,11 +528,11 @@ export default function App() {
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                     <div>
                       <div className="flex items-center gap-2 text-sm text-blue-500 dark:text-blue-300"><Briefcase className="h-4 w-4" /> {item.role}</div>
-                      <h3 className="mt-2 text-xl font-semibold">{item.company}</h3>
+                      <h3 className="mt-2 text-xl font-semibold text-slate-900 dark:text-white">{item.company}</h3>
                     </div>
-                    <div className="text-sm text-black/50 dark:text-white/50">{item.period}</div>
+                    <div className="text-sm text-slate-500 dark:text-white/50">{item.period}</div>
                   </div>
-                  <ul className="mt-5 space-y-3 text-sm leading-7 text-black/65 dark:text-white/65">
+                  <ul className="mt-5 space-y-3 text-sm leading-7 text-slate-700 dark:text-white/65">
                     {item.points.map((point) => (
                       <li key={point} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{point}</span></li>
                     ))}
@@ -702,89 +695,48 @@ export default function App() {
 
                       <div className="mt-8 grid gap-4">
                         <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
-                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Overview</div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Goal</div>
                           <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.overview}</p>
                         </div>
                         <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
                           <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Problem</div>
                           <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.problem}</p>
                         </div>
-                        <div className="grid gap-4 md:grid-cols-2">
-                          <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
-                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">User</div>
-                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
-                              {activeProject.users.map((item) => (
-                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
-                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Key Insight</div>
-                            <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.insight}</p>
-                          </div>
+                        <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Insight</div>
+                          <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.insight}</p>
                         </div>
                         <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
                           <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Solution</div>
-                          <ul className="mt-3 grid gap-3 md:grid-cols-2 text-sm leading-7 text-black/68 dark:text-white/68">
-                            {activeProject.solution.map((item) => (
+                          <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.solution}</p>
+                        </div>
+                        <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Key Decisions</div>
+                          <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                            {activeProject.decisions.map((item) => (
                               <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
                             ))}
                           </ul>
                         </div>
                         <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
-                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Key Product Decisions</div>
-                          <ol className="mt-3 space-y-4 text-sm leading-7 text-black/68 dark:text-white/68">
-                            {activeProject.decisions.map((item, index) => (
-                              <li key={item} className="flex gap-3"><span className="text-blue-500 dark:text-blue-300">{index + 1}.</span> <span>{item}</span></li>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Tradeoffs</div>
+                          <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                            {activeProject.tradeoffs.map((item) => (
+                              <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
                             ))}
-                          </ol>
-                        </div>
-                        <div className="grid gap-4 md:grid-cols-2">
-                          <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
-                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Tradeoffs</div>
-                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
-                              {activeProject.tradeoffs.map((item) => (
-                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
-                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Expected Impact</div>
-                            <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.expectedImpact}</p>
-                          </div>
-                        </div>
-                        <div className="grid gap-4 md:grid-cols-2">
-                          <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
-                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">My Role</div>
-                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
-                              {activeProject.roleDetails.map((item) => (
-                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
-                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">What I Learned</div>
-                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
-                              {activeProject.learnings.map((item) => (
-                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
-                              ))}
-                            </ul>
-                          </div>
+                          </ul>
                         </div>
                         <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
-                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Future Improvements / Metrics</div>
-                          <div className="mt-3 text-sm font-medium text-black/70 dark:text-white/70">Metrics I would track:</div>
-                          <ul className="mt-2 grid gap-3 md:grid-cols-2 text-sm leading-7 text-black/68 dark:text-white/68">
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Metrics</div>
+                          <ul className="mt-3 grid gap-3 md:grid-cols-2 text-sm leading-7 text-black/68 dark:text-white/68">
                             {activeProject.futureMetrics.map((item) => (
                               <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
                             ))}
                           </ul>
-                          <div className="mt-4 text-sm font-medium text-black/70 dark:text-white/70">Next Steps:</div>
-                          <ul className="mt-2 grid gap-3 md:grid-cols-2 text-sm leading-7 text-black/68 dark:text-white/68">
-                            {activeProject.nextSteps.map((item) => (
-                              <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
-                            ))}
-                          </ul>
+                        </div>
+                        <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Outcome</div>
+                          <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.outcome}</p>
                         </div>
                       </div>
                     </>
