@@ -338,9 +338,11 @@ export default function App() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mt-6 text-5xl font-semibold leading-[1.02] tracking-tight text-balance sm:text-6xl lg:text-7xl"
+                className="mt-6 text-5xl font-semibold leading-[1.02] tracking-tight text-balance sm:text-5xl lg:text-6xl"
               >
-                Product Management Candidate Focused on Sales, Data, and User Behavior
+                Product Management Candidate
+                 <br />
+                Focused on Sales, Data, and User Behavior
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
@@ -348,7 +350,7 @@ export default function App() {
                 transition={{ duration: 0.7, delay: 0.08 }}
                 className="mt-6 max-w-2xl text-lg leading-8 text-black/65 dark:text-white/68"
               >
-                Currently developing an event-based social platform exploring how shared context improves real-world user interaction.
+                I focus on understanding user problems, analyzing data, and applying real-world sales insight to inform product decisions.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
