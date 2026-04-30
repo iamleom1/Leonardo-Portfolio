@@ -68,13 +68,13 @@ const projects = [
     category: "Applied Project Work",
     role: "Founder · Product Manager",
     title: "R4V3 — Event-Based Social Platform",
-    subtitle: "Built an MVP to help users connect with others attending the same live events.",
+    subtitle: "Designed and built an MVP for event-based social matching.",
     blurb:
       "Built an event-first social platform concept focused on helping users connect with others attending the same live events.",
     metrics: [],
     accent: "from-blue-500/20 to-cyan-400/10",
     overview:
-      "Goal: Help users connect with others attending the same live events.",
+      "Help users connect with others attending the same live events.",
     problem:
       "Solo attendees struggle to connect at live events. Existing platforms are profile-based and not context-aware, leading to low-quality interactions.",
     users: [
@@ -82,13 +82,47 @@ const projects = [
       "Users looking for shared-context interactions"
     ],
     insight:
-      "Connections are more meaningful when users share time, place, and intent tied to a specific event.",
+      "Working in customer-facing sales, I noticed people form faster trust when there is a shared context. At live events, that context is pre-built — attendees already share time, place, and intent. I wanted to design around that signal instead of ignoring it.",
     solution:
       "Designed an event-first matching system where users opt into events they plan to attend. Matching is activated within that event context, allowing users to connect with others attending the same event.",
     decisions: [
       "Event-based matching vs swipe model",
       "RSVP-driven visibility",
       "Temporary event interactions"
+    ],
+    decisionDetails: [
+      {
+        title: "Event-based matching vs swipe model",
+        rationale:
+          "Swipe models optimize for volume; event-based matching optimizes for relevance. Chose event-context because shared attendance creates higher-intent connections than profile browsing alone."
+      },
+      {
+        title: "RSVP-driven visibility",
+        rationale:
+          "Users only become visible to others at an event once they opt in via RSVP, reducing friction and giving users control over their exposure before committing to attend."
+      },
+      {
+        title: "Temporary event interactions",
+        rationale:
+          "Connections and conversations are scoped to the event window to reduce pressure and keep interactions contextually meaningful rather than open-ended."
+      }
+    ],
+    userFlow: [
+      {
+        step: "1",
+        title: "Browse Events",
+        description: "Discover local events by genre and location"
+      },
+      {
+        step: "2",
+        title: "RSVP & Opt In",
+        description: "Confirm attendance and enable matching for that event"
+      },
+      {
+        step: "3",
+        title: "Match & Message",
+        description: "Connect with others attending the same event"
+      }
     ],
     tradeoffs: [
       "Lower total matches, but higher relevance and intent."
@@ -116,7 +150,7 @@ const projects = [
       "Refine engagement and retention mechanics"
     ],
     outcome:
-      "Built an MVP and validated the concept through early user feedback, identifying event-based context as a key driver of engagement."
+      "Tested the MVP with early users across multiple live events. Feedback revealed that users wanted visibility into who else had RSVPed before deciding to opt in themselves — this insight directly reshaped the RSVP-driven visibility flow. Event-based context was consistently cited as the reason interactions felt more comfortable than on traditional social apps."
   },
   {
     id: "finance",
@@ -609,7 +643,11 @@ export default function App() {
                   <div>
                     <div className="text-xs uppercase tracking-[0.18em] text-blue-500 dark:text-blue-300">{activeProject.category}</div>
                     <h3 className="mt-3 text-3xl font-semibold tracking-tight">{activeProject.title}</h3>
-                    <div className="mt-2 text-sm text-black/55 dark:text-white/55">{activeProject.role} · {activeProject.subtitle}</div>
+                    <div className="mt-2 text-sm text-black/55 dark:text-white/55">
+                      {activeProject.id === "events"
+                        ? "Founder & Product Manager — Designed and built an MVP for event-based social matching."
+                        : `${activeProject.role} · ${activeProject.subtitle}`}
+                    </div>
                   </div>
                   <button onClick={closeProject} className="rounded-full border border-black/10 p-2 text-[#0f172a] dark:border-white/10 dark:text-white" aria-label="Close modal">
                     <X className="h-4 w-4" />
@@ -711,10 +749,40 @@ export default function App() {
                           <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.solution}</p>
                         </div>
                         <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
+                          <div className="text-xs uppercase tracking-[0.2em] text-blue-500 dark:text-blue-300">User Flow</div>
+                          <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-stretch md:justify-between">
+                            {activeProject.userFlow.map((step, index) => (
+                              <React.Fragment key={step.step}>
+                                <div className="flex-1 rounded-[1.1rem] border border-black/8 bg-[#f8fbff] p-4 dark:border-white/10 dark:bg-[#07111e]">
+                                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-500 dark:text-blue-300">Step {step.step}</div>
+                                  <div className="mt-2 text-base font-semibold text-[#0f172a] dark:text-white">{step.title}</div>
+                                  <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-white/60">{step.description}</p>
+                                </div>
+                                {index < activeProject.userFlow.length - 1 ? (
+                                  <>
+                                    <div className="hidden items-center justify-center text-slate-400 dark:text-white/35 md:flex">
+                                      <ChevronRight className="h-5 w-5" />
+                                    </div>
+                                    <div className="flex items-center justify-center text-slate-400 dark:text-white/35 md:hidden">
+                                      <ChevronDown className="h-5 w-5" />
+                                    </div>
+                                  </>
+                                ) : null}
+                              </React.Fragment>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
                           <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Key Decisions</div>
-                          <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
-                            {activeProject.decisions.map((item) => (
-                              <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                          <ul className="mt-3 space-y-4">
+                            {activeProject.decisionDetails.map((item) => (
+                              <li key={item.title} className="flex gap-3">
+                                <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" />
+                                <div>
+                                  <div className="text-sm font-semibold leading-7 text-[#0f172a] dark:text-white">{item.title}</div>
+                                  <p className="text-sm leading-6 text-slate-600 dark:text-white/60">{item.rationale}</p>
+                                </div>
+                              </li>
                             ))}
                           </ul>
                         </div>
