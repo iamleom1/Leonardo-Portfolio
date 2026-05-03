@@ -44,6 +44,8 @@ const financeVisuals = [
   }
 ] as const;
 
+const crmDashboardVisual = `${assetBase}crm-dashboard.png`;
+
 const r4v3Visuals = [
   {
     src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-04-13 at 14.54.35.png`,
@@ -74,17 +76,17 @@ const projects = [
     metrics: [],
     accent: "from-blue-500/20 to-cyan-400/10",
     overview:
-      "Help users connect with others attending the same live events.",
+      "Enable high-intent connections by matching users within shared event contexts rather than profiles.",
     problem:
-      "Solo attendees struggle to connect at live events. Existing platforms are profile-based and not context-aware, leading to low-quality interactions.",
+      "Solo attendees struggle to connect at live events. Existing platforms are profile-based and ignore context, resulting in low-quality, low-intent interactions despite high activity.",
     users: [
       "Solo attendees at live events",
       "Users looking for shared-context interactions"
     ],
     insight:
-      "Working in customer-facing sales, I noticed people form faster trust when there is a shared context. At live events, that context is pre-built — attendees already share time, place, and intent. I wanted to design around that signal instead of ignoring it.",
+      "Shared context (time, place, intent) increases trust and interaction likelihood, making events a stronger matching foundation than profiles.",
     solution:
-      "Designed an event-first matching system where users opt into events they plan to attend. Matching is activated within that event context, allowing users to connect with others attending the same event.",
+      "Built an event-first matching system where users opt into events, triggering context-based discovery and messaging within that event.",
     decisions: [
       "Event-based matching vs swipe model",
       "RSVP-driven visibility",
@@ -92,40 +94,29 @@ const projects = [
     ],
     decisionDetails: [
       {
-        title: "Event-based matching vs swipe model",
+        title: "Event-based matching over swipe model",
         rationale:
-          "Swipe models optimize for volume; event-based matching optimizes for relevance. Chose event-context because shared attendance creates higher-intent connections than profile browsing alone."
+          "Prioritized relevance and intent over volume."
       },
       {
-        title: "RSVP-driven visibility",
+        title: "RSVP-gated visibility",
         rationale:
-          "Users only become visible to others at an event once they opt in via RSVP, reducing friction and giving users control over their exposure before committing to attend."
+          "Users only appear after opting in, increasing intent and reducing noise."
       },
       {
-        title: "Temporary event interactions",
+        title: "Time-bound interactions",
         rationale:
-          "Connections and conversations are scoped to the event window to reduce pressure and keep interactions contextually meaningful rather than open-ended."
+          "Conversations expire with events to maintain context and reduce pressure."
       }
     ],
     userFlow: [
-      {
-        step: "1",
-        title: "Browse Events",
-        description: "Discover local events by genre and location"
-      },
-      {
-        step: "2",
-        title: "RSVP & Opt In",
-        description: "Confirm attendance and enable matching for that event"
-      },
-      {
-        step: "3",
-        title: "Match & Message",
-        description: "Connect with others attending the same event"
-      }
+      { step: "1", title: "Browse Events", description: "Discover local events by genre and location" },
+      { step: "2", title: "RSVP & Opt In", description: "Confirm attendance and enable matching for that event" },
+      { step: "3", title: "Match & Message", description: "Connect with others attending the same event" }
     ],
     tradeoffs: [
-      "Lower total matches, but higher relevance and intent."
+      "Lower match volume, higher relevance",
+      "Lower scalability vs broad social platforms"
     ],
     expectedImpact:
       "Event-based matching is designed to improve interaction quality by grounding discovery in shared context instead of profile-first browsing.",
@@ -139,10 +130,10 @@ const projects = [
       "Temporary interactions can increase intent"
     ],
     futureMetrics: [
-      "Primary: % of users connecting with at least one person per event",
-      "Supporting: Match -> message conversion rate",
-      "Supporting: RSVP -> interaction rate",
-      "Supporting: Retention (repeat event participation)"
+      "RSVP -> match rate",
+      "Match -> message conversion",
+      "Messages per match",
+      "Repeat event participation"
     ],
     nextSteps: [
       "Improve matching quality",
@@ -150,7 +141,10 @@ const projects = [
       "Refine engagement and retention mechanics"
     ],
     outcome:
-      "Tested the MVP with early users across multiple live events. Feedback revealed that users wanted visibility into who else had RSVPed before deciding to opt in themselves — this insight directly reshaped the RSVP-driven visibility flow. Event-based context was consistently cited as the reason interactions felt more comfortable than on traditional social apps."
+      "Early feedback suggested that visibility into other attendees increased user confidence before opting in, reinforcing the role of context in driving engagement."
+    ,
+    productThinking:
+      "Shifts social discovery from profile-based matching to context-based matching.\n\nOptimizes for:\n• shared intent\n• timing\n• environment\n\nTrades volume for higher-quality interactions."
   },
   {
     id: "finance",
@@ -192,29 +186,56 @@ const projects = [
   {
     id: "spot",
     category: "Applied Project Work",
-    role: "Product Development Project",
-    title: "Seat Placement Optimization Technology (S.P.O.T.)",
-    subtitle: "MVP concept for a classroom seat-availability system",
+    role: "Data Analytics · Tableau · CRM Optimization · Business Strategy",
+    title: "CRM Lead Performance Dashboard — STG Auto Group",
+    subtitle: "",
     blurb:
-      "Developed a seat availability system to reduce search time in classrooms, focusing on usability, real-time visibility, and product feasibility.",
-    metrics: ["MVP concept", "3D modeling", "Early UI testing"],
+      "Analyzed lead quality, conversion efficiency, and profitability across acquisition channels to identify where revenue is actually generated and where marketing spend is being wasted.",
+    metrics: ["Data Analytics", "Tableau", "CRM Optimization", "Business Strategy"],
     accent: "from-sky-500/20 to-blue-400/10",
+    statHighlights: [
+      "30%+ close rate (Walk-In) vs ~6% average",
+      "$455K profit from zero-cost channel (2026 YTD)",
+      "25.3% bad lead rate identified as a key performance risk"
+    ],
+    context:
+      "STG Auto Group generates leads across multiple acquisition channels but lacked visibility into which sources drive profit vs volume.",
     problem:
-      "The project focused on creating a classroom seat-availability concept and testing whether the idea was feasible through early product development work.",
-    insight:
-      "The concept needed to be explored through prototyping, modeling, and interface testing rather than left at the idea stage.",
-    decisions: [
-      "Built an MVP concept using basic prototyping.",
-      "Used 3D modeling to support the concept.",
-      "Included early UI testing to assess feasibility.",
-      "Worked with a four-person team to ensure Marketing, Financing, and Ethical Concerns all aligned and were ready for presentation."
+      "The dealership was optimizing for lead volume instead of profitability, with no clear visibility into which acquisition channels actually generate revenue.\n\n• Which sources actually generate profit\n• Conversion efficiency by channel\n• ROI of marketing spend",
+    insights: [
+      "Walk-In drives the majority of profit despite $0 acquisition cost\n• ~$455K profit (2026 YTD)\n• ~30.38% close rate\n• $0 acquisition cost",
+      "Paid channels generate high volume but convert 3–5x less efficiently than Walk-In traffic, significantly reducing overall ROI\n• Phone Pop and 99Drive drive high leads\n• Lower close rates reduce ROI",
+      "Bad lead rate is high (25.3%)\n• Indicates declining lead quality\n• Suggests weak filtering before CRM entry",
+      "Profit concentration risk\n• A small number of sources drive a large share of total profit\n• Creates dependency on specific channels",
     ],
     tradeoffs: [
-      "Focused on feasibility instead of a full launch-ready product.",
-      "Kept the scope centered on concept development and presentation readiness."
+      "Volume vs conversion efficiency",
+      "Growth vs profitability",
+      "Spend scale vs ROI"
     ],
-    outcome:
-      "The project produced a clearer MVP concept supported by prototyping, modeling, and team coordination across presentation areas."
+    decisions: [
+      "Reallocate budget away from low ROI channels",
+      "Invest more in high-conversion sources (Walk-In drivers)",
+      "Improve lead qualification before entering CRM",
+      "Optimize follow-up strategy",
+      "Introduce source-level performance tracking"
+    ],
+    impact: [
+      "Shifted focus from lead volume → profit per lead",
+      "Identified inefficiencies in marketing spend",
+      "Highlighted bad lead rate as a core issue",
+      "Enabled clearer, data-driven acquisition strategy"
+    ],
+    scopeConstraints: [
+      "Focused on Jan–Apr data to ensure consistent comparison window",
+      "Adjusted Walk-In gross profit to reflect 2026-only performance",
+      "Prioritized clarity over full CRM complexity"
+    ],
+    technicalExecution:
+      "Built in Tableau using calculated fields and transformations for:\n\n• Close rate (Appointments → Sales conversion)\n• Profit by source (Revenue − acquisition cost)\n• Lead quality segmentation (Good / Neutral / Bad)\n• Year-over-year comparison (2025 vs 2026)",
+    productThinking:
+      "This dashboard converts CRM activity into a decision system, revealing where revenue is actually created and enabling targeted, ROI-driven acquisition strategy.",
+    image: crmDashboardVisual
   }
 ] as const;
 
@@ -512,21 +533,11 @@ export default function App() {
                           </div>
                         </div>
                       ) : (
-                        <div className="flex h-full min-h-[280px] flex-col justify-between rounded-[1.4rem] border border-black/8 bg-gradient-to-br from-white via-slate-50 to-slate-100 p-5 dark:border-white/10 dark:from-white/5 dark:via-white/5 dark:to-slate-500/10">
-                          <div>
-                            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/45 dark:text-white/45">Project snapshot</div>
-                            <div className="mt-4 text-lg font-semibold text-[#0f172a] dark:text-white">MVP concept backed by prototype work and early validation.</div>
-                            <p className="mt-3 text-sm leading-7 text-black/60 dark:text-white/60">
-                              Product concept, 3D modeling, and early UI testing brought into one focused build story.
-                            </p>
+                        <div className="h-full overflow-hidden rounded-[1.4rem] border border-black/8 bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:border-white/10 dark:from-white/5 dark:via-white/5 dark:to-slate-500/10">
+                          <div className="border-b border-black/8 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-black/45 dark:border-white/10 dark:text-white/45">
+                            Dashboard preview
                           </div>
-                          <div className="mt-6 grid grid-cols-3 gap-2">
-                            {project.metrics.map((item) => (
-                              <div key={item} className="rounded-2xl border border-black/8 bg-white/85 px-3 py-3 text-center text-xs text-black/70 dark:border-white/10 dark:bg-white/5 dark:text-white/70">
-                                {item}
-                              </div>
-                            ))}
-                          </div>
+                          <img src={project.image} alt={project.title} className="h-[230px] w-full object-cover object-center" />
                         </div>
                       )}
                     </div>
@@ -654,7 +665,7 @@ export default function App() {
                   </button>
                 </div>
 
-                {activeProject.metrics.length ? (
+                {activeProject.metrics.length && activeProject.id !== "spot" ? (
                   <div className="mt-8 grid gap-6 sm:grid-cols-3">
                     {activeProject.metrics.map((metric) => (
                       <div key={metric} className="rounded-2xl border border-black/6 bg-white/80 p-4 text-sm dark:border-white/10 dark:bg-white/5">{metric}</div>
@@ -698,37 +709,30 @@ export default function App() {
                   {activeProject.id === "events" ? (
                     <>
                       <div className="overflow-hidden rounded-[1.5rem] border border-orange-500/20 bg-[radial-gradient(circle_at_top,rgba(251,146,60,0.14),transparent_45%),linear-gradient(135deg,#130e0a,#0b1020)] shadow-[0_24px_70px_rgba(15,23,42,0.24)] dark:shadow-[0_24px_70px_rgba(0,0,0,0.35)]">
-                        <button
-                          type="button"
-                          onClick={() => toggleSection("events-visuals")}
-                          className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
-                        >
+                        <div className="flex items-center justify-between gap-4 px-5 py-4 text-left">
                           <div>
                             <div className="text-xs uppercase tracking-[0.2em] text-orange-300">Product walkthrough</div>
                             <div className="mt-1 text-base font-semibold text-white">Event-Based Matching Flow</div>
                             <div className="mt-1 text-xs text-white/55">Browse, opt-in, coordinate</div>
                           </div>
-                          <ChevronDown className={`h-5 w-5 shrink-0 text-orange-300 transition-transform ${expandedSections.includes("events-visuals") ? "rotate-180" : ""}`} />
-                        </button>
-                        {expandedSections.includes("events-visuals") ? (
-                          <div className="border-t border-white/10 px-5 pb-5 pt-4">
-                            <div className="grid gap-4 lg:grid-cols-3 lg:items-start">
-                              {r4v3Visuals.map((visual, index) => (
-                                <figure key={visual.src} className={`overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c0c0f] shadow-[0_18px_40px_rgba(0,0,0,0.28)] ${index === 1 ? "lg:-mt-3" : ""}`}>
-                                  <div className="flex h-[540px] items-start justify-center overflow-hidden bg-black p-3">
-                                    <div className={`h-full overflow-hidden rounded-[1.25rem] border border-white/10 bg-[#121217] shadow-[0_12px_28px_rgba(0,0,0,0.35)] ${index === 1 ? "w-[19.75rem]" : "w-[18.5rem]"}`}>
-                                      <img src={visual.src} alt={visual.title} className="h-full w-full object-contain object-top" />
-                                    </div>
+                        </div>
+                        <div className="border-t border-white/10 px-5 pb-5 pt-4">
+                          <div className="grid gap-4 lg:grid-cols-3 lg:items-start">
+                            {r4v3Visuals.map((visual, index) => (
+                              <figure key={visual.src} className={`overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c0c0f] shadow-[0_18px_40px_rgba(0,0,0,0.28)] ${index === 1 ? "lg:-mt-3" : ""}`}>
+                                <div className="flex h-[540px] items-start justify-center overflow-hidden bg-black p-3">
+                                  <div className={`h-full overflow-hidden rounded-[1.25rem] border border-white/10 bg-[#121217] shadow-[0_12px_28px_rgba(0,0,0,0.35)] ${index === 1 ? "w-[19.75rem]" : "w-[18.5rem]"}`}>
+                                    <img src={visual.src} alt={visual.title} className="h-full w-full object-contain object-top" />
                                   </div>
-                                  <figcaption className="border-t border-white/10 px-4 py-4">
-                                    <div className="text-sm font-semibold text-white">{visual.title}</div>
-                                    <div className="mt-1 text-sm leading-6 text-white/65">{visual.caption}</div>
-                                  </figcaption>
-                                </figure>
-                              ))}
-                            </div>
+                                </div>
+                                <figcaption className="border-t border-white/10 px-4 py-4">
+                                  <div className="text-sm font-semibold text-white">{visual.title}</div>
+                                  <div className="mt-1 text-sm leading-6 text-white/65">{visual.caption}</div>
+                                </figcaption>
+                              </figure>
+                            ))}
                           </div>
-                        ) : null}
+                        </div>
                       </div>
 
                       <div className="mt-8 grid gap-4">
@@ -796,15 +800,31 @@ export default function App() {
                         </div>
                         <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
                           <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Metrics</div>
-                          <ul className="mt-3 grid gap-3 md:grid-cols-2 text-sm leading-7 text-black/68 dark:text-white/68">
-                            {activeProject.futureMetrics.map((item) => (
-                              <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
-                            ))}
-                          </ul>
+                          <div className="mt-3 space-y-4 text-sm leading-7 text-black/68 dark:text-white/68">
+                            <div>
+                              <div className="font-semibold text-[#0f172a] dark:text-white">Primary</div>
+                              <div className="mt-2 flex gap-3">
+                                <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" />
+                                <span>% of users connecting with at least one person per event</span>
+                              </div>
+                            </div>
+                            <div>
+                              <div className="font-semibold text-[#0f172a] dark:text-white">Supporting</div>
+                              <ul className="mt-2 space-y-2">
+                                {activeProject.futureMetrics.map((item) => (
+                                  <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
                         </div>
                         <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
                           <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Outcome</div>
-                          <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.outcome}</p>
+                          <p className="mt-2 whitespace-pre-line text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.outcome}</p>
+                        </div>
+                        <div className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Product Thinking</div>
+                          <p className="mt-2 whitespace-pre-line text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.productThinking}</p>
                         </div>
                       </div>
                     </>
@@ -858,15 +878,99 @@ export default function App() {
                         </div>
                       </div>
                     </div>
-                  ) : activeProject.id !== "events" ? (
+                  ) : activeProject.id === "spot" ? (
+                    <>
+                      <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                        {activeProject.statHighlights.map((item) => (
+                          <div key={item} className="rounded-[1.2rem] border border-black/8 bg-white/80 px-4 py-4 text-sm font-medium leading-6 text-[#0f172a] shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:text-white dark:shadow-none">
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c0c0f] shadow-[0_18px_40px_rgba(0,0,0,0.28)]">
+                        <img src={activeProject.image} alt={activeProject.title} className="w-full object-cover object-top" />
+                      </div>
+
+                      <div className="mt-6 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+                        <div className="space-y-5">
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Context</div>
+                            <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.context}</p>
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Problem</div>
+                            <p className="mt-2 whitespace-pre-line text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.problem}</p>
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Technical Execution</div>
+                            <p className="mt-2 whitespace-pre-line text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.technicalExecution}</p>
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Scope & Constraints</div>
+                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                              {activeProject.scopeConstraints.map((item) => (
+                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="pt-2">
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Product Thinking</div>
+                            <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.productThinking}</p>
+                          </div>
+                        </div>
+
+                        <div className="space-y-5">
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Dashboard Overview</div>
+                            <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">
+                              Integrates lead volume, conversion, cost, and profit into a single view, enabling direct comparison of acquisition channel performance and ROI across Jan–Apr 2025 vs Jan–Apr 2026.
+                            </p>
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Key Insights</div>
+                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                              {activeProject.insights.map((item) => (
+                                <li key={item} className="whitespace-pre-line">{item}</li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Tradeoffs Identified</div>
+                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                              {activeProject.tradeoffs.map((item) => (
+                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Product / Business Decisions</div>
+                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                              {activeProject.decisions.map((item) => (
+                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Impact</div>
+                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
+                              {activeProject.impact.map((item) => (
+                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
                     <div className="mt-8 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
                       <div className="space-y-6">
                         <div>
-                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Project focus</div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Problem</div>
                           <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.problem}</p>
                         </div>
                         <div>
-                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Supporting detail</div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Insight</div>
                           <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{activeProject.insight}</p>
                         </div>
                         <div>
@@ -877,7 +981,7 @@ export default function App() {
 
                       <div className="space-y-6">
                         <div>
-                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Resume-aligned highlights</div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Key Decisions</div>
                           <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
                             {activeProject.decisions.map((item) => (
                               <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
@@ -885,7 +989,7 @@ export default function App() {
                           </ul>
                         </div>
                         <div>
-                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Scope</div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Tradeoffs</div>
                           <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
                             {activeProject.tradeoffs.map((item) => (
                               <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
@@ -894,7 +998,7 @@ export default function App() {
                         </div>
                       </div>
                     </div>
-                  ) : null}
+                  )}
                 </div>
               </motion.div>
             </motion.div>
