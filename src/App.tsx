@@ -48,19 +48,19 @@ const crmDashboardVisual = `${assetBase}crm-dashboard.png`;
 
 const r4v3Visuals = [
   {
-    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-04-13 at 14.54.35.png`,
-    title: "Browse Local Events",
-    caption: "Users browse curated local events and signal intent by selecting ones they plan to attend."
+    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-05-02 at 18.33.49.png`,
+    title: "Browse Events",
+    caption: "Discover and signal intent"
   },
   {
-    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-04-13 at 14.54.11.png`,
-    title: "Crew Toggle (Core Feature)",
-    caption: "Matching is activated at the event level—users opt into 'Looking for Crew' to become visible to others attending."
+    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-05-02 at 18.35.14.png`,
+    title: "Crew Toggle (Core)",
+    caption: "Opt-in to activate matching"
   },
   {
-    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-04-13 at 14.55.29.png`,
+    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-05-02 at 18.34.09.png`,
     title: "Event Detail (Depth)",
-    caption: "Event pages centralize RSVP, visibility controls, and real-time context for coordination and connection."
+    caption: "RSVP + visibility + coordination"
   }
 ] as const;
 
@@ -151,36 +151,54 @@ const projects = [
     category: "Applied Project Work",
     role: "Systems Analysis Project",
     title: "Integrated Automotive Finance System",
-    subtitle: "Redesigned a fragmented F&I workflow into a centralized, API-driven system.",
+    subtitle: "Redesigned a fragmented automotive F&I workflow into a centralized, API-driven system to improve data flow across CRM, lenders, DMV, and insurance providers.",
     blurb:
-      "Analyzed and redesigned a fragmented F&I workflow into a centralized system, focusing on reducing inefficiencies, improving data flow, and streamlining deal processing.",
+      "Redesigned a fragmented automotive F&I workflow into a centralized system, improving data flow and deal visibility.",
     metrics: ["Workflow analysis", "System redesign", "Data architecture"],
     accent: "from-blue-600/20 to-slate-400/10",
+    snapshot: [
+      {
+        title: "Problem",
+        body: "Deal data spread across disconnected systems -> duplicate entry and delays."
+      },
+      {
+        title: "Insight",
+        body: "Root issue was system fragmentation, not just process inefficiency."
+      },
+      {
+        title: "Product Direction",
+        body: "Centralized system connecting CRM, lenders, DMV, insurance."
+      },
+      {
+        title: "Outcome",
+        body: "Designed a system improving visibility, reducing rework, and speeding deal flow."
+      }
+    ],
     problem:
-      "Customer and deal information in the F&I process is spread across multiple systems, requiring repeated data entry and manual handoffs between CRM, lenders, DMV, and insurance providers. This creates delays, errors, and slows down deal completion and funding.",
+      "Data spread across systems caused repeated entry, manual handoffs, and delays.",
     insight:
-      "The core issue isn't just process inefficiency-it's system fragmentation. Each step operates in isolation, forcing the same data to be re-entered and validated multiple times.",
+      "System fragmentation forced redundant validation and reduced visibility.",
     productDirection:
-      "Analyzed the end-to-end deal workflow and designed an integrated system that centralizes customer and deal data. The system connects lenders, DMV, and insurance providers through APIs, reducing manual entry and enabling real-time data flow.",
+      "Designed a centralized workflow connecting all partners via APIs.",
     decisions: [
-      "Centralized all deal data into a single system of record.",
-      "Replaced manual entry with API-based integrations.",
-      "Automated validation to reduce errors and rework.",
-      "Standardized data flow across all external partners."
+      "Single system of record",
+      "API integrations replacing manual steps",
+      "Validation checkpoints",
+      "Standardized data flow"
     ],
     tradeoffs: [
-      "Required coordination across multiple external systems.",
-      "Initial implementation complexity due to integrations.",
-      "Prioritized core workflow improvements over edge-case handling."
+      "Higher integration complexity",
+      "Dependency on external systems",
+      "Focused on core flows over edge cases"
     ],
     nextSteps: [
-      "Define API standards for lender and DMV integrations.",
-      "Build interface for real-time deal tracking.",
-      "Add audit and compliance tracking features.",
-      "Expand to support additional financing and insurance providers."
+      "Define API specs",
+      "Build real-time tracking dashboard",
+      "Add compliance tracking",
+      "Expand provider integrations"
     ],
     outcome:
-      "Developed a structured system design that replaces disconnected workflows with a centralized platform, reducing redundant data entry and improving process speed, accuracy, and visibility across the deal lifecycle.",
+      "Designed a system improving visibility, reducing rework, and speeding deal flow.",
     visualSet: "finance"
   },
   {
@@ -390,7 +408,7 @@ export default function App() {
               >
                 Product Management Candidate
                  <br />
-                <span className="text-white/70">
+                <span className="text-black/45 dark:text-white/70">
                 Focused on Sales, Data, and User Behavior
               </span>
               </motion.h1>
@@ -675,23 +693,17 @@ export default function App() {
 
                 <div className="mt-8 space-y-4">
                   {activeProject.id === "finance" ? (
-                    <div className="overflow-hidden rounded-[1.5rem] border border-sky-500/20 bg-gradient-to-br from-sky-50 via-white to-slate-50 shadow-[0_18px_50px_rgba(14,116,144,0.08)] dark:from-sky-500/10 dark:via-[#07111e] dark:to-slate-500/10 dark:shadow-none">
-                      <button
-                        type="button"
-                        onClick={() => toggleSection("finance-visuals")}
-                        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
-                      >
-                        <div>
-                          <div className="text-xs uppercase tracking-[0.2em] text-sky-700 dark:text-sky-300">Visual appendix</div>
-                          <div className="mt-1 text-base font-semibold text-[#0f172a] dark:text-white">Direct PDF diagrams from the automotive systems project</div>
-                          <div className="mt-1 text-xs text-[#475569] dark:text-white/60">4 diagrams, pages 15, 18, 19, 20</div>
+                    <>
+                      <div className="overflow-hidden rounded-[1.5rem] border border-sky-500/20 bg-gradient-to-br from-sky-50 via-white to-slate-50 shadow-[0_18px_50px_rgba(14,116,144,0.08)] dark:from-sky-500/10 dark:via-[#07111e] dark:to-slate-500/10 dark:shadow-none">
+                        <div className="flex items-center justify-between gap-4 px-5 py-4 text-left">
+                          <div>
+                            <div className="text-xs uppercase tracking-[0.2em] text-sky-700 dark:text-sky-300">System Diagrams</div>
+                            <div className="mt-1 text-base font-semibold text-[#0f172a] dark:text-white">Current-state and proposed workflow system views</div>
+                          </div>
                         </div>
-                        <ChevronDown className={`h-5 w-5 shrink-0 text-sky-700 transition-transform dark:text-sky-300 ${expandedSections.includes("finance-visuals") ? "rotate-180" : ""}`} />
-                      </button>
-                      {expandedSections.includes("finance-visuals") ? (
                         <div className="border-t border-sky-500/15 px-5 pb-5 pt-4">
                           <div className="grid gap-4 lg:grid-cols-2">
-                            {financeVisuals.map((visual) => (
+                            {financeVisuals.slice(0, 2).map((visual) => (
                               <figure key={visual.src} className="overflow-hidden rounded-[1.25rem] border border-sky-500/15 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.06)] dark:border-white/10 dark:bg-[#08101c] dark:shadow-none">
                                 <img src={visual.src} alt={visual.title} className="w-full object-cover object-top" />
                                 <figcaption className="border-t border-black/5 px-4 py-3 dark:border-white/10">
@@ -701,14 +713,44 @@ export default function App() {
                               </figure>
                             ))}
                           </div>
+                          {expandedSections.includes("finance-more-visuals") ? (
+                            <div className="mt-4 grid gap-4 lg:grid-cols-2">
+                              {financeVisuals.slice(2).map((visual) => (
+                                <figure key={visual.src} className="overflow-hidden rounded-[1.25rem] border border-sky-500/15 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.06)] dark:border-white/10 dark:bg-[#08101c] dark:shadow-none">
+                                  <img src={visual.src} alt={visual.title} className="w-full object-cover object-top" />
+                                  <figcaption className="border-t border-black/5 px-4 py-3 dark:border-white/10">
+                                    <div className="text-sm font-semibold text-[#0f172a] dark:text-white">{visual.title}</div>
+                                    <div className="mt-1 text-xs leading-6 text-[#475569] dark:text-white/60">{visual.caption}</div>
+                                  </figcaption>
+                                </figure>
+                              ))}
+                            </div>
+                          ) : null}
+                          <button
+                            type="button"
+                            onClick={() => toggleSection("finance-more-visuals")}
+                            className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-sky-700 transition hover:text-sky-600 dark:text-sky-300 dark:hover:text-sky-200"
+                          >
+                            {expandedSections.includes("finance-more-visuals") ? "View less" : "View more"}
+                            <ChevronDown className={`h-4 w-4 transition-transform ${expandedSections.includes("finance-more-visuals") ? "rotate-180" : ""}`} />
+                          </button>
                         </div>
-                      ) : null}
-                    </div>
+                      </div>
+
+                      <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                        {activeProject.snapshot.map((item) => (
+                          <div key={item.title} className="rounded-[1.35rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none">
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">{item.title}</div>
+                            <p className="mt-2 text-sm leading-7 text-black/68 dark:text-white/68">{item.body}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </>
                   ) : null}
 
                   {activeProject.id === "events" ? (
                     <>
-                      <div className="overflow-hidden rounded-[1.5rem] border border-orange-500/20 bg-[radial-gradient(circle_at_top,rgba(251,146,60,0.14),transparent_45%),linear-gradient(135deg,#130e0a,#0b1020)] shadow-[0_24px_70px_rgba(15,23,42,0.24)] dark:shadow-[0_24px_70px_rgba(0,0,0,0.35)]">
+                      <div className="overflow-hidden rounded-[1.5rem] border border-orange-500/18 bg-[linear-gradient(135deg,#18120f,#0b1020)]">
                         <div className="flex items-center justify-between gap-4 px-5 py-4 text-left">
                           <div>
                             <div className="text-xs uppercase tracking-[0.2em] text-orange-300">Product walkthrough</div>
@@ -717,17 +759,17 @@ export default function App() {
                           </div>
                         </div>
                         <div className="border-t border-white/10 px-5 pb-5 pt-4">
-                          <div className="grid gap-4 lg:grid-cols-3 lg:items-start">
+                          <div className="grid gap-6 lg:grid-cols-3 lg:items-start">
                             {r4v3Visuals.map((visual, index) => (
-                              <figure key={visual.src} className={`overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c0c0f] shadow-[0_18px_40px_rgba(0,0,0,0.28)] ${index === 1 ? "lg:-mt-3" : ""}`}>
-                                <div className="flex h-[540px] items-start justify-center overflow-hidden bg-black p-3">
-                                  <div className={`h-full overflow-hidden rounded-[1.25rem] border border-white/10 bg-[#121217] shadow-[0_12px_28px_rgba(0,0,0,0.35)] ${index === 1 ? "w-[19.75rem]" : "w-[18.5rem]"}`}>
+                              <figure key={visual.src} className={`overflow-hidden rounded-[1.5rem] border ${index === 1 ? "border-white/14 bg-[#121217]" : "border-white/8 bg-[#101114]"} ${index === 1 ? "lg:scale-[1.015]" : ""}`}>
+                                <div className="flex h-[540px] items-start justify-center overflow-hidden bg-black px-4 pt-5">
+                                  <div className={`h-full overflow-hidden rounded-[1.25rem] border border-white/8 bg-[#121217] ${index === 1 ? "w-[19.9rem]" : "w-[18.35rem]"}`}>
                                     <img src={visual.src} alt={visual.title} className="h-full w-full object-contain object-top" />
                                   </div>
                                 </div>
-                                <figcaption className="border-t border-white/10 px-4 py-4">
-                                  <div className="text-sm font-semibold text-white">{visual.title}</div>
-                                  <div className="mt-1 text-sm leading-6 text-white/65">{visual.caption}</div>
+                                <figcaption className="border-t border-white/8 px-6 py-5">
+                                  <div className="text-[1.05rem] font-semibold text-white">{visual.title}</div>
+                                  <div className="mt-2 text-sm leading-6 text-white/58">{visual.caption}</div>
                                 </figcaption>
                               </figure>
                             ))}
@@ -853,7 +895,7 @@ export default function App() {
 
                       <div className="space-y-6">
                         <div>
-                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Key Product Decisions</div>
+                          <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Key Decisions</div>
                           <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
                             {activeProject.decisions.map((item) => (
                               <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
