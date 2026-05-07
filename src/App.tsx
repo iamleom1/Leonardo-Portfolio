@@ -19,6 +19,7 @@ import {
 const assetBase = import.meta.env.BASE_URL;
 const headshot = `${assetBase}headshot.jpg`;
 const resumeHref = `${assetBase}Leonardo_Medina_Resume.pdf`;
+const r4v3PrdHref = `${assetBase}R4V3_PRD.pdf`;
 const linkedInHref = "https://www.linkedin.com/in/leonardo-medina-391817287";
 
 const financeVisuals = [
@@ -674,9 +675,20 @@ export default function App() {
                     <h3 className="mt-3 text-3xl font-semibold tracking-tight">{activeProject.title}</h3>
                     <div className="mt-2 text-sm text-black/55 dark:text-white/55">
                       {activeProject.id === "events"
-                        ? "Founder & Product Manager — Designed and built an MVP for event-based social matching."
+                        ? "Founder & Product Manager — Built an event-based social coordination platform for nightlife communities."
                         : `${activeProject.role} · ${activeProject.subtitle}`}
                     </div>
+                    {activeProject.id === "events" ? (
+                      <a
+                        href={r4v3PrdHref}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-3 inline-flex items-center gap-2 rounded-full border border-orange-500/20 bg-orange-500/8 px-4 py-2 text-sm font-medium text-orange-700 transition hover:border-orange-500/35 hover:bg-orange-500/12 dark:border-orange-400/20 dark:bg-orange-400/10 dark:text-orange-200 dark:hover:border-orange-300/35 dark:hover:bg-orange-400/14"
+                      >
+                        <Download className="h-4 w-4" />
+                        Download Product Requirements Document
+                      </a>
+                    ) : null}
                   </div>
                   <button onClick={closeProject} className="rounded-full border border-black/10 p-2 text-[#0f172a] dark:border-white/10 dark:text-white" aria-label="Close modal">
                     <X className="h-4 w-4" />
