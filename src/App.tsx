@@ -20,6 +20,7 @@ const assetBase = import.meta.env.BASE_URL;
 const headshot = `${assetBase}headshot.jpg`;
 const resumeHref = `${assetBase}Leonardo_Medina_Resume.pdf`;
 const r4v3PrdHref = `${assetBase}R4V3_PRD.pdf`;
+const tableauPublicHref = "https://public.tableau.com/app/profile/iamleom/vizzes";
 const linkedInHref = "https://www.linkedin.com/in/leonardo-medina-391817287";
 
 const financeVisuals = [
@@ -687,6 +688,17 @@ export default function App() {
                       >
                         <Download className="h-4 w-4" />
                         Download Product Requirements Document
+                      </a>
+                    ) : null}
+                    {activeProject.id === "spot" ? (
+                      <a
+                        href={tableauPublicHref}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-3 inline-flex items-center gap-2 rounded-full border border-sky-500/20 bg-sky-500/8 px-4 py-2 text-sm font-medium text-sky-700 transition hover:border-sky-500/35 hover:bg-sky-500/12 dark:border-sky-400/20 dark:bg-sky-400/10 dark:text-sky-200 dark:hover:border-sky-300/35 dark:hover:bg-sky-400/14"
+                      >
+                        <ArrowUpRight className="h-4 w-4" />
+                        View Tableau Public
                       </a>
                     ) : null}
                   </div>
