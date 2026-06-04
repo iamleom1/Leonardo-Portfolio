@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowUpRight,
@@ -46,21 +46,32 @@ const financeVisuals = [
   }
 ] as const;
 
-const crmDashboardVisual = `${assetBase}crm-dashboard.png`;
+const crmDashboardVisuals = [
+  {
+    src: `${assetBase}crm-dashboard-1.png`,
+    title: "STG Dashboard 1",
+    caption: "2026 overview with historical performance, funnel drop-off, and profit concentration."
+  },
+  {
+    src: `${assetBase}crm-dashboard-2.png`,
+    title: "STG Dashboard 2",
+    caption: "Lead source performance across conversion, profitability, and source-level scorecards."
+  }
+] as const;
 
 const r4v3Visuals = [
   {
-    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-05-02 at 18.33.49.png`,
+    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-06-01 at 16.48.41.png`,
     title: "Browse Events",
     caption: "Discover and signal intent"
   },
   {
-    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-05-02 at 18.35.14.png`,
+    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-06-01 at 16.50.56.png`,
     title: "Crew Toggle (Core)",
     caption: "Opt-in to activate matching"
   },
   {
-    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-05-02 at 18.34.09.png`,
+    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-06-01 at 16.50.15.png`,
     title: "Event Detail (Depth)",
     caption: "RSVP + visibility + coordination"
   }
@@ -214,9 +225,9 @@ const projects = [
     metrics: ["Data Analytics", "Tableau", "CRM Optimization", "Business Strategy"],
     accent: "from-sky-500/20 to-blue-400/10",
     statHighlights: [
-      "30%+ close rate (Walk-In) vs ~6% average",
-      "$455K profit from zero-cost channel (2026 YTD)",
-      "25.3% bad lead rate identified as a key performance risk"
+      "30.1% Close Rate vs 6.5% Average",
+      "Walk-In Generated Highest Gross Profit",
+      "Only 6.5% of Leads Convert to Sales"
     ],
     context:
       "STG Auto Group generates leads across multiple acquisition channels but lacked visibility into which sources drive profit vs volume.",
@@ -241,10 +252,10 @@ const projects = [
       "Introduce source-level performance tracking"
     ],
     impact: [
-      "Shifted focus from lead volume → profit per lead",
-      "Identified inefficiencies in marketing spend",
-      "Highlighted bad lead rate as a core issue",
-      "Enabled clearer, data-driven acquisition strategy"
+      "Lead volume was not the strongest predictor of profitability.",
+      "Walk-In traffic generated disproportionate profit relative to acquisition cost.",
+      "Lead quality emerged as a stronger driver of performance than lead quantity.",
+      "A small number of sources contributed the majority of gross profit."
     ],
     scopeConstraints: [
       "Focused on Jan–Apr data to ensure consistent comparison window",
@@ -255,7 +266,7 @@ const projects = [
       "Built in Tableau using calculated fields and transformations for:\n\n• Close rate (Appointments → Sales conversion)\n• Profit by source (Revenue − acquisition cost)\n• Lead quality segmentation (Good / Neutral / Bad)\n• Year-over-year comparison (2025 vs 2026)",
     productThinking:
       "This dashboard converts CRM activity into a decision system, revealing where revenue is actually created and enabling targeted, ROI-driven acquisition strategy.",
-    image: crmDashboardVisual
+    image: crmDashboardVisuals[0].src
   }
 ] as const;
 
@@ -336,6 +347,10 @@ export default function App() {
   const [dark, setDark] = useState(true);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [expandedSections, setExpandedSections] = useState<string[]>([]);
+  const [activeVisual, setActiveVisual] = useState<{ src: string; title: string; layout: "landscape" | "portrait" } | null>(null);
+  const [visualZoom, setVisualZoom] = useState(1);
+  const pinchStartDistance = useRef<number | null>(null);
+  const pinchStartZoom = useRef(1);
 
   const activeProject = useMemo(() => projects.find((project) => project.id === activeId) ?? null, [activeId]);
 
@@ -353,6 +368,49 @@ export default function App() {
   const closeProject = () => {
     setActiveId(null);
     setExpandedSections([]);
+  };
+
+  const openVisual = (src: string, title: string, layout: "landscape" | "portrait" = "landscape") => {
+    setActiveVisual({ src, title, layout });
+    setVisualZoom(1);
+  };
+
+  const closeVisual = () => {
+    setActiveVisual(null);
+    setVisualZoom(1);
+  };
+
+  const updateVisualZoom = (nextZoom: number) => {
+    setVisualZoom(Math.min(3, Math.max(1, Number(nextZoom.toFixed(2)))));
+  };
+
+  const handleVisualWheel = (event: React.WheelEvent<HTMLDivElement>) => {
+    if (!event.ctrlKey) return;
+    event.preventDefault();
+    updateVisualZoom(visualZoom - event.deltaY * 0.0025);
+  };
+
+  const handleVisualTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (event.touches.length !== 2) return;
+    const first = event.touches.item(0);
+    const second = event.touches.item(1);
+    if (!first || !second) return;
+    pinchStartDistance.current = Math.hypot(second.clientX - first.clientX, second.clientY - first.clientY);
+    pinchStartZoom.current = visualZoom;
+  };
+
+  const handleVisualTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (event.touches.length !== 2 || pinchStartDistance.current === null) return;
+    event.preventDefault();
+    const first = event.touches.item(0);
+    const second = event.touches.item(1);
+    if (!first || !second) return;
+    const currentDistance = Math.hypot(second.clientX - first.clientX, second.clientY - first.clientY);
+    updateVisualZoom(pinchStartZoom.current * (currentDistance / pinchStartDistance.current));
+  };
+
+  const handleVisualTouchEnd = () => {
+    pinchStartDistance.current = null;
   };
 
   return (
@@ -654,6 +712,91 @@ export default function App() {
         </main>
 
         <AnimatePresence>
+          {activeVisual ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[60] flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm"
+              onClick={closeVisual}
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 16, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 12, scale: 0.98 }}
+                transition={{ duration: 0.2 }}
+                onClick={(event) => event.stopPropagation()}
+                className="flex h-[92vh] w-full max-w-7xl flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#07111e] shadow-[0_30px_120px_rgba(0,0,0,0.45)]"
+              >
+                <div className="flex items-center justify-between gap-4 border-b border-white/10 px-5 py-4">
+                  <div>
+                    <div className="text-sm font-semibold text-white">{activeVisual.title}</div>
+                    <div className="mt-1 text-xs text-white/55">
+                      Click outside to close. Use zoom controls to inspect the full {activeVisual.layout === "portrait" ? "screen" : "dashboard"}.
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => updateVisualZoom(visualZoom - 0.25)}
+                      className="rounded-full border border-white/10 px-3 py-1.5 text-sm font-medium text-white/80 transition hover:border-white/20 hover:text-white"
+                    >
+                      -
+                    </button>
+                    <div className="min-w-[3.5rem] text-center text-sm text-white/70">{Math.round(visualZoom * 100)}%</div>
+                    <button
+                      type="button"
+                      onClick={() => updateVisualZoom(visualZoom + 0.25)}
+                      className="rounded-full border border-white/10 px-3 py-1.5 text-sm font-medium text-white/80 transition hover:border-white/20 hover:text-white"
+                    >
+                      +
+                    </button>
+                    <button
+                      type="button"
+                      onClick={closeVisual}
+                      className="rounded-full border border-white/10 p-2 text-white transition hover:border-white/20"
+                      aria-label="Close image viewer"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
+                <div
+                  className="min-h-0 flex-1 overflow-auto bg-[#030712] p-4"
+                  onWheel={handleVisualWheel}
+                  onTouchStart={handleVisualTouchStart}
+                  onTouchMove={handleVisualTouchMove}
+                  onTouchEnd={handleVisualTouchEnd}
+                >
+                  <div className={`flex min-h-full items-start ${visualZoom > 1 ? "justify-start" : "justify-center"}`}>
+                    <div
+                      className={`shrink-0 ${visualZoom === 1 ? "mx-auto" : ""}`}
+                      style={{
+                        transform: `scale(${visualZoom})`,
+                        transformOrigin: visualZoom > 1 ? "top left" : activeVisual.layout === "portrait" ? "center top" : "center center"
+                      }}
+                    >
+                      <img
+                        src={activeVisual.src}
+                        alt={activeVisual.title}
+                        className="block rounded-[1rem] object-contain"
+                        style={{
+                          touchAction: "manipulation",
+                          maxHeight: activeVisual.layout === "portrait" ? "calc(92vh - 9rem)" : "calc(92vh - 7rem)",
+                          maxWidth:
+                            activeVisual.layout === "portrait"
+                              ? "min(calc(100vw - 8rem), 28rem)"
+                              : "min(calc(100vw - 3rem), 96rem)",
+                          width: "auto",
+                          height: "auto"
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          ) : null}
           {activeProject ? (
             <motion.div
               initial={{ opacity: 0 }}
@@ -786,11 +929,18 @@ export default function App() {
                           <div className="grid gap-6 lg:grid-cols-3 lg:items-start">
                             {r4v3Visuals.map((visual, index) => (
                               <figure key={visual.src} className={`overflow-hidden rounded-[1.5rem] border ${index === 1 ? "border-white/14 bg-[#121217]" : "border-white/8 bg-[#101114]"} ${index === 1 ? "lg:scale-[1.015]" : ""}`}>
-                                <div className="flex h-[540px] items-start justify-center overflow-hidden bg-black px-4 pt-5">
-                                  <div className={`h-full overflow-hidden rounded-[1.25rem] border border-white/8 bg-[#121217] ${index === 1 ? "w-[19.9rem]" : "w-[18.35rem]"}`}>
-                                    <img src={visual.src} alt={visual.title} className="h-full w-full object-contain object-top" />
+                                <button
+                                  type="button"
+                                      onClick={() => openVisual(visual.src, visual.title, "landscape")}
+                                  className="block w-full text-left"
+                                  aria-label={`Open ${visual.title}`}
+                                >
+                                  <div className="flex items-start justify-center overflow-hidden bg-black px-2 pt-3">
+                                    <div className={`aspect-[9/19.5] w-full overflow-hidden rounded-[1.25rem] border border-white/8 bg-[#121217] transition duration-200 hover:border-white/18 ${index === 1 ? "max-w-[20.75rem]" : "max-w-[19.75rem]"}`}>
+                                      <img src={visual.src} alt={visual.title} className="h-full w-full object-cover object-top" />
+                                    </div>
                                   </div>
-                                </div>
+                                </button>
                                 <figcaption className="border-t border-white/8 px-6 py-5">
                                   <div className="text-[1.05rem] font-semibold text-white">{visual.title}</div>
                                   <div className="mt-2 text-sm leading-6 text-white/58">{visual.caption}</div>
@@ -954,8 +1104,21 @@ export default function App() {
                         ))}
                       </div>
 
-                      <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c0c0f] shadow-[0_18px_40px_rgba(0,0,0,0.28)]">
-                        <img src={activeProject.image} alt={activeProject.title} className="w-full object-cover object-top" />
+                      <div className="mt-6 grid gap-4 lg:grid-cols-2">
+                        {crmDashboardVisuals.map((visual) => (
+                          <button
+                            type="button"
+                            key={visual.src}
+                                  onClick={() => openVisual(visual.src, visual.title, "portrait")}
+                            className="block overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c0c0f] text-left shadow-[0_18px_40px_rgba(0,0,0,0.28)] transition hover:border-white/20"
+                          >
+                            <img src={visual.src} alt={visual.title} className="w-full object-cover object-top" />
+                            <div className="border-t border-white/10 px-4 py-3">
+                              <div className="text-sm font-semibold text-white">{visual.title}</div>
+                              <div className="mt-1 text-xs leading-6 text-white/60">{visual.caption}</div>
+                            </div>
+                          </button>
+                        ))}
                       </div>
 
                       <div className="mt-6 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
@@ -1010,15 +1173,7 @@ export default function App() {
                             </ul>
                           </div>
                           <div>
-                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Product / Business Decisions</div>
-                            <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
-                              {activeProject.decisions.map((item) => (
-                                <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div>
-                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Impact</div>
+                            <div className="text-sm font-semibold text-blue-500 dark:text-blue-300">Analytical Findings</div>
                             <ul className="mt-3 space-y-3 text-sm leading-7 text-black/68 dark:text-white/68">
                               {activeProject.impact.map((item) => (
                                 <li key={item} className="flex gap-3"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" /> <span>{item}</span></li>
