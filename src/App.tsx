@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowUpRight,
@@ -347,10 +347,18 @@ export default function App() {
   const [dark, setDark] = useState(true);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [expandedSections, setExpandedSections] = useState<string[]>([]);
-  const [activeVisual, setActiveVisual] = useState<{ src: string; title: string; layout: "landscape" | "portrait" } | null>(null);
+  const [activeVisual, setActiveVisual] = useState<{
+    src: string;
+    title: string;
+    layout: "landscape" | "portrait";
+    naturalWidth: number;
+    naturalHeight: number;
+  } | null>(null);
   const [visualZoom, setVisualZoom] = useState(1);
+  const [visualViewportSize, setVisualViewportSize] = useState({ width: 0, height: 0 });
   const pinchStartDistance = useRef<number | null>(null);
   const pinchStartZoom = useRef(1);
+  const visualViewportRef = useRef<HTMLDivElement | null>(null);
 
   const activeProject = useMemo(() => projects.find((project) => project.id === activeId) ?? null, [activeId]);
 
@@ -371,13 +379,24 @@ export default function App() {
   };
 
   const openVisual = (src: string, title: string, layout: "landscape" | "portrait" = "landscape") => {
-    setActiveVisual({ src, title, layout });
-    setVisualZoom(1);
+    const image = new Image();
+    image.onload = () => {
+      setActiveVisual({
+        src,
+        title,
+        layout,
+        naturalWidth: image.naturalWidth,
+        naturalHeight: image.naturalHeight
+      });
+      setVisualZoom(1);
+    };
+    image.src = src;
   };
 
   const closeVisual = () => {
     setActiveVisual(null);
     setVisualZoom(1);
+    setVisualViewportSize({ width: 0, height: 0 });
   };
 
   const updateVisualZoom = (nextZoom: number) => {
@@ -412,6 +431,41 @@ export default function App() {
   const handleVisualTouchEnd = () => {
     pinchStartDistance.current = null;
   };
+
+  useEffect(() => {
+    if (!activeVisual || !visualViewportRef.current || typeof ResizeObserver === "undefined") return;
+
+    const element = visualViewportRef.current;
+    const updateViewportSize = () => {
+      setVisualViewportSize({
+        width: element.clientWidth - 32,
+        height: element.clientHeight - 32
+      });
+    };
+
+    updateViewportSize();
+
+    const resizeObserver = new ResizeObserver(updateViewportSize);
+    resizeObserver.observe(element);
+    window.addEventListener("resize", updateViewportSize);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updateViewportSize);
+    };
+  }, [activeVisual]);
+
+  const visualBaseScale =
+    activeVisual && visualViewportSize.width > 0 && visualViewportSize.height > 0
+      ? Math.min(
+          visualViewportSize.width / activeVisual.naturalWidth,
+          visualViewportSize.height / activeVisual.naturalHeight,
+          1
+        )
+      : 1;
+
+  const visualDisplayWidth = activeVisual ? activeVisual.naturalWidth * visualBaseScale * visualZoom : 0;
+  const visualDisplayHeight = activeVisual ? activeVisual.naturalHeight * visualBaseScale * visualZoom : 0;
 
   return (
     <div className={dark ? "dark bg-[#06070b] text-white" : "bg-[#f7f9fc] text-[#0f172a]"}>
@@ -762,18 +816,19 @@ export default function App() {
                   </div>
                 </div>
                 <div
+                  ref={visualViewportRef}
                   className="min-h-0 flex-1 overflow-auto bg-[#030712] p-4"
                   onWheel={handleVisualWheel}
                   onTouchStart={handleVisualTouchStart}
                   onTouchMove={handleVisualTouchMove}
                   onTouchEnd={handleVisualTouchEnd}
                 >
-                  <div className={`flex min-h-full items-start ${visualZoom > 1 ? "justify-start" : "justify-center"}`}>
+                  <div className={`flex min-h-full ${visualZoom > 1 ? "items-start justify-start" : "items-center justify-center"}`}>
                     <div
                       className={`shrink-0 ${visualZoom === 1 ? "mx-auto" : ""}`}
                       style={{
-                        transform: `scale(${visualZoom})`,
-                        transformOrigin: visualZoom > 1 ? "top left" : activeVisual.layout === "portrait" ? "center top" : "center center"
+                        width: `${visualDisplayWidth}px`,
+                        height: `${visualDisplayHeight}px`
                       }}
                     >
                       <img
@@ -782,13 +837,8 @@ export default function App() {
                         className="block rounded-[1rem] object-contain"
                         style={{
                           touchAction: "manipulation",
-                          maxHeight: activeVisual.layout === "portrait" ? "calc(92vh - 9rem)" : "calc(92vh - 7rem)",
-                          maxWidth:
-                            activeVisual.layout === "portrait"
-                              ? "min(calc(100vw - 8rem), 28rem)"
-                              : "min(calc(100vw - 3rem), 96rem)",
-                          width: "auto",
-                          height: "auto"
+                          width: `${visualDisplayWidth}px`,
+                          height: `${visualDisplayHeight}px`
                         }}
                       />
                     </div>
