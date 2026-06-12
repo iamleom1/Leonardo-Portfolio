@@ -61,17 +61,17 @@ const crmDashboardVisuals = [
 
 const r4v3Visuals = [
   {
-    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-06-01 at 16.48.41.png`,
+    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-06-12 at 13.36.46.png`,
     title: "Browse Events",
     caption: "Discover and signal intent"
   },
   {
-    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-06-01 at 16.50.56.png`,
+    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-06-12 at 13.36.59.png`,
     title: "Crew Toggle (Core)",
     caption: "Opt-in to activate matching"
   },
   {
-    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-06-01 at 16.50.15.png`,
+    src: `${assetBase}r4v3-visuals/Simulator Screenshot - iPhone 16 Pro - 2026-06-12 at 13.37.05.png`,
     title: "Event Detail (Depth)",
     caption: "RSVP + visibility + coordination"
   }
